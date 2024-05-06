@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { User } from 'src/app/interfaces/user';
 import { AdminService } from 'src/app/services/admin.service';
+import { TicketService } from '../apps/ticket/services/ticket.service';
+import { Ticket } from '../apps/ticket/ticket';
 
 @Component({
   selector: 'app-dashboard',
@@ -45,9 +47,11 @@ export class DashboardComponent implements OnInit {
 
 
   constructor(private calendar: NgbCalendar,
-    private _AdminService:AdminService
+    private _AdminService:AdminService,
+    private _TicketService:TicketService
   ) {}
   myUsers:User[]
+  myTickets:Ticket[]
   open:boolean = false
   userWillAdmin:User
   currentDate: NgbDateStruct;
@@ -66,21 +70,20 @@ export class DashboardComponent implements OnInit {
     // if (document.querySelector('html')?.getAttribute('dir') === 'rtl') {
     //   this.addRtlOptions();
     // }
-
-
     this.getAllUsers()
-
+    this.allTickets()
   }
 
   // getallusers
 
   getAllUsers():void{
-    this._AdminService.getAllUsers().subscribe({
+    this._AdminService.allUsers.subscribe({
       next:(response)=>{
-        this.myUsers = this.mappingUser(response)
+        this.myUsers=this.mappingUser(response)
 
       }
     })
+
   }
    mappingUser(arr:User[]):User[]{
 
@@ -156,8 +159,18 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  allTickets():void{
+    this._TicketService.allTickets.subscribe({
+      next:(response)=>{
+        this.myTickets=response
+      }
+    })
+  }
 
-   }
+
+
+
+}
 
 
   /**

@@ -34,9 +34,9 @@ export class ticketComponent implements OnInit {
   }
 
   allTickets():void{
-    this._TicketService.getTickets().subscribe({
+    this._TicketService.allTickets.subscribe({
       next:(response)=>{
-            this.tickets = response
+        this.tickets=response
       }
     })
   }
@@ -65,7 +65,7 @@ export class ticketComponent implements OnInit {
       this._TicketService.updateTicket(this.createTicket.value).subscribe({
         next:(response)=>{
           this.upOpen=false
-          this.allTickets()
+          this._TicketService.assignValue()
         }
       })
 
@@ -78,7 +78,7 @@ export class ticketComponent implements OnInit {
       this._TicketService.createTicket(this.createTicket.value).subscribe({
         next:(response)=>{
           this.open=false
-          this.allTickets()
+          this._TicketService.assignValue()
         }
       })
 
@@ -97,7 +97,7 @@ export class ticketComponent implements OnInit {
     this._TicketService.deleteTicket(this.ticketWillDelete.id).subscribe({
       next:(response)=>{
         this.delOpen=false
-        this.allTickets()
+        this._TicketService.assignValue()
       }
 
     })

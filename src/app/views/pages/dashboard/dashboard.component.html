@@ -177,7 +177,7 @@
     <div class="card">
       <div class="card-body">
         <div class="d-flex justify-content-between align-items-baseline mb-2">
-          <h6 class="card-title mb-0">Inbox</h6>
+          <h6 class="card-title mb-0">Last 5 Tickets</h6>
           <div ngbDropdown class="mb-2">
             <button ngbDropdownToggle class="btn p-0 no-dropdown-toggle-icon" type="button" id="dropdownMenuButton6">
               <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal" appFeatherIcon></i>
@@ -192,19 +192,20 @@
           </div>
         </div>
         <div class="d-flex flex-column">
-          <a href="" (click)="false" class="d-flex align-items-center border-bottom pb-3">
+          <a href="" (click)="false" class="d-flex align-items-center border-bottom pb-3" *ngFor="let ticket of myTickets.slice(0,5);let i = index">
             <div class="me-3">
-              <img src="https://via.placeholder.com/35x35" class="rounded-circle wd-35" alt="user">
+              <img *ngIf="i%2==0" src="../../../../assets/img/BG/undraw_male_avatar_g98d.svg" class="rounded-circle wd-35" alt="user">
+              <img *ngIf="i%2!=0" src="../../../../assets/img/BG/undraw_female_avatar_efig.svg" class="rounded-circle wd-35" alt="user">
             </div>
             <div class="w-100">
               <div class="d-flex justify-content-between">
-                <h6 class="text-body mb-2">Leonardo Payne</h6>
-                <p class="text-muted tx-12">12.30 PM</p>
+                <h6 class="text-body mb-2">{{ticket.ownerEmail}}</h6>
+                <p class="text-muted tx-12">{{ticket.hospitalID}}</p>
               </div>
-              <p class="text-muted tx-13">Hey! there I'm available...</p>
+              <p class="text-muted tx-13">(Donate Day : {{ticket.donationDate.split('T')[0]}} )</p>
             </div>
           </a>
-          <a href="" (click)="false" class="d-flex align-items-center border-bottom py-3">
+          <!-- <a href="" (click)="false" class="d-flex align-items-center border-bottom py-3">
             <div class="me-3">
               <img src="https://via.placeholder.com/35x35" class="rounded-circle wd-35" alt="user">
             </div>
@@ -251,7 +252,7 @@
               </div>
               <p class="text-muted tx-13">Hey! there I'm available...</p>
             </div>
-          </a>
+          </a> -->
         </div>
       </div>
     </div>
@@ -279,6 +280,7 @@
             <thead>
               <tr class=" text-capitalize">
                 <th class="pt-0">#</th>
+                <th class="pt-0">profile</th>
                 <th class="pt-0">user name</th>
                 <th class="pt-0">gender</th>
                 <th class="pt-0">authorities</th>
@@ -289,6 +291,8 @@
             <tbody class="text-capitalize">
               <tr *ngFor="let user of myUsers ; let i = index " class="cursor-pointer" (click)="openDialog(user)">
                 <td>{{i+1}}</td>
+                <td class="pt-2" *ngIf="user.gender=='male'"><img src="../../../../assets/img/BG/undraw_male_avatar_g98d.svg" class="rounded-circle wd-35" alt="user"></td>
+                <td class="pt-2" *ngIf="user.gender!='male'"><img src="../../../../assets/img/BG/undraw_female_avatar_efig.svg" class="rounded-circle wd-35" alt="user"></td>
                 <td>{{user.firstname}}</td>
                 <td>{{user.gender}}</td>
                 <td>{{user.authorities[1] ? 'admin' : 'user'}}</td>

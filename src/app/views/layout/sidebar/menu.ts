@@ -43,6 +43,11 @@ export const MENU: MenuItem[] = [
     link: '/apps/blood-bag',
   },
   {
+    label: 'Users',
+    icon: 'user',
+    link: '/apps/Users',
+  },
+  {
     label: 'Emergency',
     icon: 'calendar',
     link: '/apps/emergency',

@@ -37,6 +37,7 @@ FullCalendarModule.registerPlugins([
 // ngx-quill
 import { QuillModule } from 'ngx-quill';
 import { BloodBagComponent } from './blood-bag/blood-bag.component';
+import { UsersComponent } from './users/users.component';
 
 
 const routes: Routes = [
@@ -84,12 +85,16 @@ const routes: Routes = [
         path: 'blood-bag',
         component: BloodBagComponent
       },
+      {
+        path: 'Users',
+        component: UsersComponent
+      },
     ]
   }
 ]
 
 @NgModule({
-  declarations: [EmailComponent, ticketComponent,EmergencyComponent, AppsComponent, InboxComponent, ReadComponent, ComposeComponent, BloodBagComponent],
+  declarations: [EmailComponent,UsersComponent, ticketComponent,EmergencyComponent, AppsComponent, InboxComponent, ReadComponent, ComposeComponent, BloodBagComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

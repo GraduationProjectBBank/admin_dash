@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -8,7 +8,19 @@ import { environment } from 'src/environments/environment';
 })
 export class AdminService {
 
-  constructor(private _httpClinet:HttpClient) { }
+  allUsers:BehaviorSubject<any>=new BehaviorSubject('')
+
+  constructor(private _httpClinet:HttpClient) {
+    this.assignUsers()
+  }
+
+  assignUsers():void{
+    this.getAllUsers().subscribe({
+      next:(response)=>{
+        this.allUsers.next(response)
+      }
+    })
+  }
 
   getAllUsers():Observable<any>{
     return this._httpClinet.get(environment.baseApi.replace('auth','admin') + `getAllUsers` )
