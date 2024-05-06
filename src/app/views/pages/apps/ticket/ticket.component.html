@@ -1,0 +1,362 @@
+
+<div id="container" *ngIf="upOpen" >
+  <div class="dialog">
+    <div class="header d-flex justify-content-between align-items-center">
+     <span class="h3 fw-bold" >Update Ticket</span> <span class="fs-3 cursor-pointer" (click)="closeUpdate()"><i class="fa-solid fa-xmark"></i></span>
+
+     </div>
+    <div class="body">
+      <form [formGroup]="createTicket">
+        <div class="form-elment">
+          <div class="flex-column">
+            <label class="text-white">Email </label></div>
+            <div class="inputForm">
+              <i class="fa-regular fa-envelope"></i>
+              <input placeholder="Enter your Email" class="input" formControlName="ownerEmail">
+            </div>
+            <!-- <div class="notifications-container my-1 mx-auto"  *ngIf="createTicket.get('email')?.touched && createTicket.get('email')?.errors">
+              <div class="error-alert">
+                <div class="flex">
+                  <div class="error-prompt-container">
+                    <p class="error-prompt-heading">E-mail must be
+                    </p>
+                    <div class="error-prompt-wrap">
+                      <ul class="error-prompt-list" role="list">
+                        <li *ngIf="createTicket.get('email')?.getError('required')">is required </li>
+                        <li *ngIf="createTicket.get('email')?.getError('email')">in E-mail format</li>
+                      </ul>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+        </div>
+        <div class="form-elment">
+          <div class="flex-column">
+            <label class="text-white">hospital ID </label></div>
+            <div class="inputForm">
+              <i class="fa-solid fa-truck-medical"></i>
+              <input placeholder="Hospital ID" class="input"  formControlName="hospitalID">
+            </div>
+            <!-- <div class="notifications-container my-1 mx-auto"  *ngIf="createTicket.get('hospitalID')?.touched && createTicket.get('hospitalID')?.errors">
+              <div class="error-alert">
+                <div class="flex">
+                  <div class="error-prompt-container">
+                    <p class="error-prompt-heading">Hospital ID must be
+                    </p>
+                    <div class="error-prompt-wrap">
+                      <ul class="error-prompt-list" role="list">
+                        <li>is required </li>
+                      </ul>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+        </div>
+        <div class="form-elment">
+          <div class="flex-column">
+            <label class="text-white">Donation Date </label></div>
+            <div class="input-date position-relative">
+              <i class="fa-regular fa-calendar-days"></i>
+              <input  class="inpu" type="date" formControlName="donationDate">
+            </div>
+            <!-- <div class="notifications-container my-1 mx-auto" *ngIf="createTicket.get('donationDate')?.touched && createTicket.get('donationDate')?.errors">
+              <div class="error-alert">
+                <div class="flex">
+                  <div class="error-prompt-container">
+                    <p class="error-prompt-heading">Donation Date must be
+                    </p>
+                    <div class="error-prompt-wrap">
+                      <ul class="error-prompt-list" role="list">
+                        <li>is required </li>
+                      </ul>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+        </div>
+        <div class="form-elment">
+          <div class="flex-column">
+            <label class="text-white">transfer Date </label></div>
+            <div class="input-date position-relative">
+              <i class="fa-solid fa-right-left"></i>
+              <input placeholder="Enter Transfer Date" class="inpu" type="date" formControlName="transferDate">
+            </div>
+            <!-- <div class="notifications-container my-1 mx-auto"  *ngIf="createTicket.get('transferDate')?.touched && createTicket.get('transferDate')?.errors">
+              <div class="error-alert">
+                <div class="flex">
+                  <div class="error-prompt-container">
+                    <p class="error-prompt-heading">E-mail must be
+                    </p>
+                    <div class="error-prompt-wrap">
+                      <ul class="error-prompt-list" role="list">
+                        <li>is required </li>
+                      </ul>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+        </div>
+        <div class="form-elment">
+          <div class="flex-column">
+            <label class="text-white">Expiry Date </label></div>
+            <div class="input-date position-relative">
+              <i class="fa-regular fa-calendar-check"></i>
+              <input placeholder="Enter Expiry Date" class="inpu" type="date" formControlName="expiryDate">
+            </div>
+            <!-- <div class="notifications-container my-1 mx-auto" *ngIf="createTicket.get('expiryDate')?.touched && createTicket.get('expiryDate')?.errors">
+              <div class="error-alert">
+                <div class="flex">
+                  <div class="error-prompt-container">
+                    <p class="error-prompt-heading">E-mail must be
+                    </p>
+                    <div class="error-prompt-wrap">
+                      <ul class="error-prompt-list" role="list">
+                        <li>is required </li>
+                      </ul>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+        </div>
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="form-elment file ">
+            <label for="img" class="mt-4">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 3H12H8C6.34315 3 5 4.34315 5 6V18C5 19.6569 6.34315 21 8 21H11M13.5 3L19 8.625M13.5 3V7.625C13.5 8.17728 13.9477 8.625 14.5 8.625H19M19 8.625V11.8125" stroke="#fffffff" stroke-width="2"></path>
+            <path d="M17 15V18M17 21V18M17 18H14M17 18H20" stroke="#fffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+              ADD FILE
+            </label>
+            <input type="file" id="img" (change)="getImageName($event)" class="d-none" formControlName="imageURL">
+          </div>
+          <span class=" shadow-lg p-2 rounded-2 " >{{imgName}}</span>
+         </div>
+      </form>
+     </div>
+    <div class="action d-flex justify-content-between">
+      <button type="submit" (click)="updateTicket()"> update</button>
+      <button class="cancel" (click)="closeUpdate()"> cancel</button>
+     </div>
+  </div>
+</div>
+<div id="container" *ngIf="open" >
+  <div class="dialog">
+    <div class="header d-flex justify-content-between align-items-center">
+     <span class="h3 fw-bold" >Create Ticket</span> <span class="fs-3 cursor-pointer" (click)="open=false"><i class="fa-solid fa-xmark"></i></span>
+
+     </div>
+    <div class="body">
+      <form [formGroup]="createTicket">
+        <div class="form-elment">
+          <div class="flex-column">
+            <label class="text-white">Email </label></div>
+            <div class="inputForm">
+              <i class="fa-regular fa-envelope"></i>
+              <input placeholder="Enter your Email" class="input" formControlName="ownerEmail">
+            </div>
+            <!-- <div class="notifications-container my-1 mx-auto"  *ngIf="createTicket.get('email')?.touched && createTicket.get('email')?.errors">
+              <div class="error-alert">
+                <div class="flex">
+                  <div class="error-prompt-container">
+                    <p class="error-prompt-heading">E-mail must be
+                    </p>
+                    <div class="error-prompt-wrap">
+                      <ul class="error-prompt-list" role="list">
+                        <li *ngIf="createTicket.get('email')?.getError('required')">is required </li>
+                        <li *ngIf="createTicket.get('email')?.getError('email')">in E-mail format</li>
+                      </ul>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+        </div>
+        <div class="form-elment">
+          <div class="flex-column">
+            <label class="text-white">hospital ID </label></div>
+            <div class="inputForm">
+              <i class="fa-solid fa-truck-medical"></i>
+              <input placeholder="Hospital ID" class="input"  formControlName="hospitalID">
+            </div>
+            <!-- <div class="notifications-container my-1 mx-auto"  *ngIf="createTicket.get('hospitalID')?.touched && createTicket.get('hospitalID')?.errors">
+              <div class="error-alert">
+                <div class="flex">
+                  <div class="error-prompt-container">
+                    <p class="error-prompt-heading">Hospital ID must be
+                    </p>
+                    <div class="error-prompt-wrap">
+                      <ul class="error-prompt-list" role="list">
+                        <li>is required </li>
+                      </ul>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+        </div>
+        <div class="form-elment">
+          <div class="flex-column">
+            <label class="text-white">Donation Date </label></div>
+            <div class="input-date position-relative">
+              <i class="fa-regular fa-calendar-days"></i>
+              <input placeholder="Enter Donation Date" class="inpu" type="date" formControlName="donationDate">
+            </div>
+            <!-- <div class="notifications-container my-1 mx-auto" *ngIf="createTicket.get('donationDate')?.touched && createTicket.get('donationDate')?.errors">
+              <div class="error-alert">
+                <div class="flex">
+                  <div class="error-prompt-container">
+                    <p class="error-prompt-heading">Donation Date must be
+                    </p>
+                    <div class="error-prompt-wrap">
+                      <ul class="error-prompt-list" role="list">
+                        <li>is required </li>
+                      </ul>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+        </div>
+        <div class="form-elment">
+          <div class="flex-column">
+            <label class="text-white">transfer Date </label></div>
+            <div class="input-date position-relative">
+              <i class="fa-solid fa-right-left"></i>
+              <input placeholder="Enter Transfer Date" class="inpu" type="date" formControlName="transferDate">
+            </div>
+            <!-- <div class="notifications-container my-1 mx-auto"  *ngIf="createTicket.get('transferDate')?.touched && createTicket.get('transferDate')?.errors">
+              <div class="error-alert">
+                <div class="flex">
+                  <div class="error-prompt-container">
+                    <p class="error-prompt-heading">E-mail must be
+                    </p>
+                    <div class="error-prompt-wrap">
+                      <ul class="error-prompt-list" role="list">
+                        <li>is required </li>
+                      </ul>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+        </div>
+        <div class="form-elment">
+          <div class="flex-column">
+            <label class="text-white">Expiry Date </label></div>
+            <div class="input-date position-relative">
+              <i class="fa-regular fa-calendar-check"></i>
+              <input placeholder="Enter Expiry Date" class="inpu" type="date" formControlName="expiryDate">
+            </div>
+            <!-- <div class="notifications-container my-1 mx-auto" *ngIf="createTicket.get('expiryDate')?.touched && createTicket.get('expiryDate')?.errors">
+              <div class="error-alert">
+                <div class="flex">
+                  <div class="error-prompt-container">
+                    <p class="error-prompt-heading">E-mail must be
+                    </p>
+                    <div class="error-prompt-wrap">
+                      <ul class="error-prompt-list" role="list">
+                        <li>is required </li>
+                      </ul>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+        </div>
+       <div class="d-flex align-items-center justify-content-between">
+        <div class="form-elment file ">
+          <label for="img" class="mt-4">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 3H12H8C6.34315 3 5 4.34315 5 6V18C5 19.6569 6.34315 21 8 21H11M13.5 3L19 8.625M13.5 3V7.625C13.5 8.17728 13.9477 8.625 14.5 8.625H19M19 8.625V11.8125" stroke="#fffffff" stroke-width="2"></path>
+          <path d="M17 15V18M17 21V18M17 18H14M17 18H20" stroke="#fffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+            ADD FILE
+          </label>
+          <input type="file" id="img" (change)="getImageName($event)" class="d-none" formControlName="imageURL">
+        </div>
+        <span class=" shadow-lg p-2 rounded-2 " >{{imgName}}</span>
+       </div>
+      </form>
+     </div>
+    <div class="action d-flex justify-content-between">
+      <button type="submit" (click)="newTicket()"> confirm</button>
+      <button class="cancel" (click)="open=false"> cancel</button>
+     </div>
+  </div>
+</div>
+<div id="container" *ngIf="delOpen">
+  <div class="dialog">
+    <div class="header d-flex justify-content-between align-items-center">
+      <span class="h3 fw-bold">Delete Ticket</span> <span class="fs-3 cursor-pointer" (click)="delOpen=false"><i class="fa-solid fa-xmark"></i></span>
+     </div>
+    <div class="body">
+      <p class="h3">Are you sure to Delete <span class=" text-capitalize shadow-lg p-2 rounded-3">{{ticketWillDelete.ownerEmail}}</span> ticket's?</p>
+     </div>
+    <div class="action d-flex justify-content-between">
+      <button (click)="delTicket()"> Delete</button>
+      <button class="cancel" (click)="delOpen=false"> cancel</button>
+     </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="card-title">Data Table</h6>
+        <div class="table-responsive">
+          <div class="head">
+            <button class="add my-0" (click)="open=true">
+              Add
+          </button>
+          </div>
+          <table id="dataTableExample" class="table">
+            <thead>
+              <tr class=" text-capitalize">
+                <th>#</th>
+                <th>owner Email</th>
+                <th>hospital ID</th>
+                <th>donation Date</th>
+                <th>expiry Date</th>
+                <th>transfer Date</th>
+                <th class="text-center">actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let ticket of tickets ; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{ticket.ownerEmail}}</td>
+                <td>{{ticket.hospitalID}}</td>
+                <td>{{ticket.donationDate.split('T')[0]}}</td>
+                <td>{{ticket.expiryDate.split('T')[0]}}</td>
+                <td>{{ticket.transferDate.split('T')[0]}}</td>
+                <td><div class="head d-flex justify-content-between align-items-baseline">
+                <button class="my-0 delete" (click)="openDelete(ticket)">
+                  Delete
+                </button>
+                <button class="update my-0" (click)="openUpdate(ticket)">
+                 Update
+                </button>
+                </div></td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
