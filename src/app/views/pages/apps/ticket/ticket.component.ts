@@ -3,6 +3,9 @@ import { TicketService } from './services/ticket.service';
 import { Ticket } from './ticket';
 import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import * as $ from 'jquery';
+import { Hospital } from '../hospital/hospital';
+import { HospitalService } from '../hospital/services/hospital.service';
 
 @Component({
   selector: 'app-ticket',
@@ -13,32 +16,22 @@ export class ticketComponent implements OnInit {
 
 
   constructor(private _TicketService:TicketService,
+    private _HospitalService:HospitalService
   ) { }
   tickets:Ticket[]
-  open:boolean
-  delOpen:boolean = false
-  upOpen:boolean = false
-  imgName:string
-  ticketWillDelete:Ticket
+  myHospital:Hospital[]
+  ticketWillDelete:any=''
   createTicket:FormGroup= new FormGroup({
     ownerEmail: new FormControl('',[Validators.email,Validators.required]),
     hospitalID: new FormControl('',[Validators.required]),
     donationDate: new FormControl('',[Validators.required]),
     transferDate: new FormControl('',[Validators.required]),
     expiryDate: new FormControl('',[Validators.required]),
-    imageURL: new FormControl('',[Validators.required]),
   })
 
   ngOnInit(): void {
       this.allTickets()
-  }
-
-  allTickets():void{
-    this._TicketService.allTickets.subscribe({
-      next:(response)=>{
-        this.tickets=response
-      }
-    })
+      this.allHospital()
   }
 
   openUpdate(ticket:Ticket){
@@ -47,24 +40,40 @@ export class ticketComponent implements OnInit {
        donationDate:ticket.donationDate,
        expiryDate:ticket.expiryDate,
        transferDate:ticket.transferDate,
-       imageURL:ticket.imageURL
       })
-      this.imgName=ticket.imageURL
-
-    this.upOpen=true
-
+      $('.updateDialog').slideDown(400)
   }
   closeUpdate():void{
     this.createTicket.reset('')
-    this.imgName=''
-    this.upOpen=false
+    $('.updateDialog').slideUp(400)
+  }
+  openDelete(ticket:Ticket){
+      this.ticketWillDelete=ticket
+      $('.deleteDialog').slideDown(400)
+  }
+  closeDelete():void{
+    $('.deleteDialog').slideUp(400)
+  }
+
+  openAdd():void{
+    $('.addDialog').slideDown(400)
+  }
+  closeAdd():void{
+    $('.addDialog').slideUp(400)
+  }
+  allTickets():void{
+    this._TicketService.allTickets.subscribe({
+      next:(response)=>{
+        this.tickets=response
+      }
+    })
   }
   updateTicket():void{
 
     if(this.createTicket.valid){
       this._TicketService.updateTicket(this.createTicket.value).subscribe({
         next:(response)=>{
-          this.upOpen=false
+          this.closeUpdate()
           this._TicketService.assignValue()
         }
       })
@@ -73,40 +82,43 @@ export class ticketComponent implements OnInit {
 
   }
   newTicket():void{
-
     if(this.createTicket.valid){
       this._TicketService.createTicket(this.createTicket.value).subscribe({
         next:(response)=>{
-          this.open=false
+          this.closeAdd()
           this._TicketService.assignValue()
         }
       })
-
     }
-
-
   }
-
-  openDelete(ticket:Ticket):void{
-    this.delOpen=true
-    this.ticketWillDelete=ticket
-  }
-
   delTicket():void{
 
     this._TicketService.deleteTicket(this.ticketWillDelete.id).subscribe({
       next:(response)=>{
-        this.delOpen=false
+        this.closeDelete()
         this._TicketService.assignValue()
       }
 
     })
   }
-
-  getImageName(e:any):void{
-    this.imgName=e.target.files[0].name
-
+  allHospital():void{
+    this._HospitalService.allHospital.subscribe({
+      next:(response)=>{
+        this.myHospital=response
+      }
+    })
   }
+  findHospitalTitle(id:String):any{
+    if(this.myHospital.find(hospital=>hospital.id==id) == undefined)
+      {
+        return id
+      }
+      else{
+      return this.myHospital.find(hospital=>hospital.id==id)?.frontMatter.title
+
+      }
+  }
+
 
 
 }

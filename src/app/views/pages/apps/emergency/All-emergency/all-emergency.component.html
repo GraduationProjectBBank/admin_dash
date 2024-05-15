@@ -1,0 +1,116 @@
+
+<div id="container" class="updateDialog all-dialog">
+  <div class="dialog-design">
+    <div class="header d-flex justify-content-between align-items-center">
+     <span class="h3 fw-bold" >Update Ticket</span> <span class="fs-3 cursor-pointer" (click)="closeUpdate()"><i class="fa-solid fa-xmark"></i></span>
+
+     </div>
+     <div class="row">
+      <div class="col-md-12 stretch-card">
+        <div class="card bg-primary border-0">
+          <div class="card-body">
+              <form [formGroup]="emergForm" (submit)="changeEmergency()">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="mb-3">
+                      <label class="form-label">Title</label>
+                      <input type="text" class="form-control border-1 border-primary" placeholder="Enter Title of Emergency" formControlName="title">
+                    </div>
+                  </div><!-- Col -->
+                  <div class="col-sm-6">
+                    <div class="mb-3">
+                      <label class="form-label">Site</label>
+                      <input type="text" class="form-control border-1 border-primary" placeholder="Enter Site of Emergency" formControlName="site">
+                    </div>
+                  </div><!-- Col -->
+                </div><!-- Row -->
+                <div class="row">
+                  <!-- <div class="col-sm-4">
+                    <div class="mb-3">
+                      <label class="form-label">City</label>
+                      <input type="text" class="form-control border-1 border-primary" placeholder="Enter city">
+                    </div>
+                  </div>Col -->
+                  <div class="col-sm-4">
+                    <div class="mb-3">
+                      <label class="form-label">Location</label>
+                      <input type="text" class="form-control border-1 border-primary" placeholder="Enter location of emergency" formControlName="location">
+                    </div>
+                  </div><!-- Col -->
+                  <div class="col-sm-4">
+                    <label for="">Choose Level</label>
+                   <select id="level" class=" form-control mb-3 mt-2 border-1 border-primary"  formControlName="level">
+                    <option value="Low">Low</option>
+                    <option value="Mid">Mid</option>
+                    <option value="High">High</option>
+                   </select>
+                  </div>
+                  <div class="col-sm-4 position-relative mb-4 mb-sm-0">
+                    <div class="mb-3">
+                      <label class="form-label mb-5 mb-sm-0">Date</label>
+                      <input type="date" class="form-control" formControlName="date">
+                    </div>
+                  </div><!-- Col -->
+
+                </div><!-- Row -->
+                <div class="row">
+
+                  <div class="col-sm-8">
+                    <label for="">Summary</label>
+                    <textarea id="" cols="50" rows="10" class="w-100 border-1 border-primary" formControlName="summary"></textarea>
+                  </div>
+                </div><!-- Row -->
+              </form>
+              <div class="action d-flex justify-content-between mt-2">
+                <button type="submit" (click)="changeEmergency()"> update</button>
+                <button class="cancel" (click)="closeUpdate()"> cancel</button>
+               </div>          </div>
+        </div>
+      </div>
+    </div>
+     </div>
+
+  </div>
+
+<div id="container" class="deleteDialog all-dialog">
+  <div class="dialog">
+    <div class="header d-flex justify-content-between align-items-center">
+      <span class="h3 fw-bold">Delete Emergency</span> <span class="fs-3 cursor-pointer" (click)="closeDelete()"><i class="fa-solid fa-xmark"></i></span>
+     </div>
+     <div class="content">
+      <div class="body d-flex align-items-center">
+        <i class="fa-solid fa-triangle-exclamation fs-1 pe-3 pe-lg-4"></i> <p class="h3">Sure to Delete this Emergency <span class=" text-capitalize shadow-lg p-2 rounded-3 text-black"></span> ?</p>
+       </div>
+      <div class="action d-flex justify-content-between">
+        <button > Delete</button>
+        <button class="cancel" (click)="closeDelete()"> cancel</button>
+       </div>
+     </div>
+  </div>
+</div>
+<div class="row g-3  bg-white shadow-sm pb-5">
+  <div class="col-12 p-4">
+    <h6 class="card-title fw-bold fs-5">All Emergency</h6>
+
+    </div>
+    <div class="col-md-4 shadow-sm" *ngFor="let emer of myEmergency" >
+      <div class="inner h-100 rounded-3">
+        <div class="card h-100">
+          <img src="assets/img/BG/imageName.png" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">{{emer.frontMatter.title}}</h5>
+            <p class="card-text h-50">{{emer.frontMatter.summary}}</p>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <button class=" delete mx-0 btn-12" (click)="openDelete(emer)">
+                <span>Delete</span>
+              </button>
+              <button class="update mx-0 btn-12" (click)="openUpdate(emer)">
+               <span>Update</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

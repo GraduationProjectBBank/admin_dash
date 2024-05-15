@@ -5,5 +5,4 @@ export interface Ticket {
   donationDate: string
   transferDate: string
   expiryDate: string
-  imageURL: string
 }

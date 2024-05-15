@@ -5,6 +5,7 @@ import { User } from 'src/app/interfaces/user';
 import { AdminService } from 'src/app/services/admin.service';
 import { TicketService } from '../apps/ticket/services/ticket.service';
 import { Ticket } from '../apps/ticket/ticket';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-dashboard',
@@ -53,7 +54,7 @@ export class DashboardComponent implements OnInit {
   myUsers:User[]
   myTickets:Ticket[]
   open:boolean = false
-  userWillAdmin:User
+  userWillAdmin:any=''
   currentDate: NgbDateStruct;
 
   ngOnInit(): void {
@@ -145,19 +146,22 @@ export class DashboardComponent implements OnInit {
   }
 
   openDialog(user:User):void{
-    this.open=true
+    $('#container').slideDown(400)
     this.userWillAdmin = user
+  }
+  closeDialog():void{
+    $('#container').slideUp(400)
   }
   newAdmin():void{
     this._AdminService.newAdmin(this.userWillAdmin.email).subscribe({
       next:(response)=>{
-        console.log(response);
-        this.open=false
+        this.closeDialog()
         this.getAllUsers()
 
       }
     })
   }
+
 
   allTickets():void{
     this._TicketService.allTickets.subscribe({

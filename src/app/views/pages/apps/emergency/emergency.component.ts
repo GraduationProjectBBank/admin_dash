@@ -1,6 +1,5 @@
 import { Component, OnInit   } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { EmergencyService } from './service/emergency.service';
 
 
 
@@ -12,7 +11,7 @@ import { EmergencyService } from './service/emergency.service';
 export class EmergencyComponent implements OnInit {
 
 
-  constructor(private _EmergencyService:EmergencyService) { }
+  constructor() { }
 
   emergForm:FormGroup = new FormGroup({
     title:new FormControl('',[Validators.required]),
@@ -28,24 +27,5 @@ export class EmergencyComponent implements OnInit {
 
   }
 
-  handelForm():void{
-
-    if(this.emergForm.valid){
-      this._EmergencyService.createEmergency(this.emergForm.value).subscribe({
-        next:(response)=>{
-          this.emergForm.reset({
-            title:'',
-            level:'',
-            date:'',
-            summary:'',
-            site:'',
-            location:''
-          })
-
-        }
-      })
-    }
-
-  }
 
 }

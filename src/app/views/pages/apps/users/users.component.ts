@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/interfaces/user';
 import { AdminService } from 'src/app/services/admin.service';
-
+import * as $ from 'jquery';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -14,8 +13,7 @@ export class UsersComponent implements OnInit {
   constructor(  private _AdminService:AdminService,
   ) {}
   myUsers:User[]
-  open:boolean = false
-  userWillAdmin:User
+  userWillAdmin:any=''
   ngOnInit(): void {
     this.getAllUsers()
   }
@@ -88,13 +86,16 @@ export class UsersComponent implements OnInit {
   }
 
   openDialog(user:User):void{
-    this.open=true
+    $('#container').slideDown(400)
     this.userWillAdmin = user
+  }
+  closeDialog():void{
+    $('#container').slideUp(400)
   }
   newAdmin():void{
     this._AdminService.newAdmin(this.userWillAdmin.email).subscribe({
       next:(response)=>{
-        this.open=false
+        this.closeDialog()
         this._AdminService.assignUsers()
 
       }

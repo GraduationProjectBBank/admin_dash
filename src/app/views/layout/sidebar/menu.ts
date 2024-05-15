@@ -11,7 +11,7 @@ export const MENU: MenuItem[] = [
     link: '/dashboard'
   },
   {
-    label: 'Advantage',
+    label: 'users benfit \'s',
     isTitle: true
   },
   // {
@@ -33,29 +33,56 @@ export const MENU: MenuItem[] = [
   //   ]
   // },
   {
-    label: 'Ticket',
-    icon: 'message-square',
-    link: '/apps/ticket',
-  },
-  {
-    label: 'Blood Bag',
-    icon: 'message-square',
-    link: '/apps/blood-bag',
-  },
-  {
     label: 'Users',
     icon: 'user',
     link: '/apps/Users',
   },
   {
-    label: 'Emergency',
-    icon: 'calendar',
-    link: '/apps/emergency',
+    label: 'Ticket',
+    icon: 'message-square',
+    link: '/apps/ticket',
+  },
+  {
+    label: 'Hospital',
+    isTitle: true
+  },
+  {
+    label: 'Blood Bag',
+    icon: 'message-square',
+    link: '/apps/blood-bag',
     badge: {
       variant: 'primary',
-      text: 'SOS',
+      text: 'new',
     }
-  }
+  },
+  {
+    label: 'hospitals',
+    icon: 'user',
+    link: '/apps/hospital',
+  },
+  {
+    label: 'Emergency',
+    icon: 'calendar',
+    subItems: [
+          {
+            label: 'Create',
+            link: '/apps/emergency/new-emergency',
+          },
+          {
+            label: 'All Emergency',
+            link: '/apps/emergency/All-emergency'
+          }
+        ]
+  },
+  {
+    label: 'Auth',
+    isTitle: true
+  },
+  {
+    label: 'LogOut',
+    icon: 'log-out',
+    link: '/auth/login',
+  },
   // },
   // {
   //   label: 'Components',

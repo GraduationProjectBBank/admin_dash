@@ -1,23 +1,25 @@
 
-<div id="container" *ngIf="open">
-  <div class="dialog">
+<div id="container" class="all-dialog">
+  <div class="dialog-design">
     <div class="header d-flex justify-content-between align-items-center">
-      <span class="h3 fw-bold">Create Admin</span> <span class="fs-3 cursor-pointer" (click)="open=false"><i class="fa-solid fa-xmark"></i></span>
+      <span class="h3 fw-bold">Create Admin</span> <span class="fs-3 cursor-pointer" (click)="closeDialog()"><i class="fa-solid fa-xmark"></i></span>
      </div>
-    <div class="body">
-      <p class="h3">Are you sure to make <span class=" text-capitalize shadow-lg p-2 rounded-3">{{userWillAdmin.firstname}}</span> admin?</p>
-     </div>
-    <div class="action d-flex justify-content-between">
-      <button (click)="newAdmin()"> confirm</button>
-      <button class="cancel" (click)="open=false"> cancel</button>
-     </div>
+    <div class="content">
+      <div class="body">
+        <p class="h3">Are you sure to make <span class=" text-capitalize shadow-lg p-2 rounded-3">{{userWillAdmin.firstname}}</span> admin?</p>
+       </div>
+      <div class="action d-flex justify-content-between">
+        <button (click)="newAdmin()"> confirm</button>
+        <button class="cancel" (click)="closeDialog()"> cancel</button>
+       </div>
+    </div>
   </div>
 </div>
 <div class="row">
   <div class="col-md-12 stretch-card">
-    <div class="card">
+    <div class="card hover-title">
       <div class="card-body">
-        <h6 class="card-title">Blood Bags</h6>
+        <h6 class="card-title my-header">All Users</h6>
         <div class="table-responsive">
           <!-- <div class="head">
             <button class="add my-0">
@@ -37,7 +39,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let user of myUsers; let i = index" class="cursor-pointer" (click)="openDialog(user)">
+              <tr *ngFor="let user of myUsers; let i = index" class="cursor-pointer " (click)="openDialog(user)">
                 <td>{{i+1}}</td>
                 <td class="pt-2" *ngIf="user.gender=='male'"><img src="../../../../assets/img/BG/undraw_male_avatar_g98d.svg" class="rounded-circle wd-35" alt="user"></td>
                 <td class="pt-2" *ngIf="user.gender!='male'"><img src="../../../../assets/img/BG/undraw_female_avatar_efig.svg" class="rounded-circle wd-35" alt="user"></td>

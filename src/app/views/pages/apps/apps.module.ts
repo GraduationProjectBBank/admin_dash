@@ -11,7 +11,6 @@ import interactionPlugin from '@fullcalendar/interaction';
 
 import { NgbDropdownModule, NgbTooltipModule, NgbNavModule, NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { EmergencyComponent } from './emergency/emergency.component';
 import { AppsComponent } from './apps.component';
 import { ticketComponent } from './ticket/ticket.component';
 import { EmailComponent } from './email/email.component';
@@ -38,6 +37,10 @@ FullCalendarModule.registerPlugins([
 import { QuillModule } from 'ngx-quill';
 import { BloodBagComponent } from './blood-bag/blood-bag.component';
 import { UsersComponent } from './users/users.component';
+import { HospitalComponent } from './hospital/hospital.component';
+import { EmergencyComponent } from './emergency/emergency.component';
+import { CreateEmergencyComponent } from './emergency/create-emergency/create-emergency.component';
+import { AllEmergencyComponent } from './emergency/All-emergency/all-emergency.component';
 
 
 const routes: Routes = [
@@ -79,7 +82,22 @@ const routes: Routes = [
       },
       {
         path: 'emergency',
-        component: EmergencyComponent
+        component: EmergencyComponent,
+        children: [
+          {
+            path: '',
+            redirectTo: 'new-emergency',
+            pathMatch: 'full'
+          },
+          {
+            path: 'new-emergency',
+            component: CreateEmergencyComponent
+          },
+          {
+            path: 'All-emergency',
+            component: AllEmergencyComponent
+          }
+        ]
       },
       {
         path: 'blood-bag',
@@ -89,12 +107,16 @@ const routes: Routes = [
         path: 'Users',
         component: UsersComponent
       },
+      {
+        path: 'hospital',
+        component: HospitalComponent
+      }
     ]
   }
 ]
 
 @NgModule({
-  declarations: [EmailComponent,UsersComponent, ticketComponent,EmergencyComponent, AppsComponent, InboxComponent, ReadComponent, ComposeComponent, BloodBagComponent],
+  declarations: [EmailComponent,UsersComponent, HospitalComponent ,ticketComponent,EmergencyComponent,CreateEmergencyComponent,AllEmergencyComponent, AppsComponent, InboxComponent, ReadComponent, ComposeComponent, BloodBagComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

@@ -13,13 +13,12 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit, AfterViewInit {
-
   @ViewChild('sidebarToggler') sidebarToggler: ElementRef;
 
   menuItems: MenuItem[] = [];
   @ViewChild('sidebarMenu') sidebarMenu: ElementRef;
 
-  constructor(@Inject(DOCUMENT) private document: Document, private renderer: Renderer2, router: Router) {
+  constructor(@Inject(DOCUMENT) private document: Document, private renderer: Renderer2, router: Router,private _Router:Router) {
     router.events.forEach((event) => {
       if (event instanceof NavigationEnd) {
 
@@ -38,6 +37,11 @@ export class SidebarComponent implements OnInit, AfterViewInit {
       }
     });
   }
+  logOut():void{
+    localStorage.clear()
+    this._Router.navigate(['/auth/login'])
+  }
+  logout:boolean
 
   ngOnInit(): void {
     this.menuItems = MENU;

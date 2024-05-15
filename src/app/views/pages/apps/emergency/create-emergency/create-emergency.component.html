@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="col-md-12 stretch-card">
+    <div class="card hover-title">
+      <div class="card-body">
+        <h6 class="card-title my-header">New Emergency</h6>
+          <form [formGroup]="emergForm" (submit)="handelForm()">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <label class="form-label">Title</label>
+                  <input type="text" class="form-control border-1 border-primary" placeholder="Enter Title of Emergency" formControlName="title">
+                </div>
+              </div><!-- Col -->
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <label class="form-label">Site</label>
+                  <input type="text" class="form-control border-1 border-primary" placeholder="Enter Site of Emergency" formControlName="site">
+                </div>
+              </div><!-- Col -->
+            </div><!-- Row -->
+            <div class="row">
+              <!-- <div class="col-sm-4">
+                <div class="mb-3">
+                  <label class="form-label">City</label>
+                  <input type="text" class="form-control border-1 border-primary" placeholder="Enter city">
+                </div>
+              </div>Col -->
+              <div class="col-sm-4">
+                <div class="mb-3">
+                  <label class="form-label">Location</label>
+                  <input type="text" class="form-control border-1 border-primary" placeholder="Enter location of emergency" formControlName="location">
+                </div>
+              </div><!-- Col -->
+              <div class="col-sm-4">
+                <label for="">Choose Level</label>
+               <select id="level" class=" form-control mb-3 mt-2 border-1 border-primary"  formControlName="level">
+                <option value="Low">Low</option>
+                <option value="Mid">Mid</option>
+                <option value="High">High</option>
+               </select>
+              </div>
+              <div class="col-sm-4 position-relative mb-4 mb-sm-0">
+                <div class="mb-3">
+                  <label class="form-label mb-5 mb-sm-0">Date</label>
+                  <input type="date" class="form-control" formControlName="date">
+                </div>
+              </div><!-- Col -->
+
+            </div><!-- Row -->
+            <div class="row">
+
+              <div class="col-sm-8">
+                <label for="">Summary</label>
+                <textarea id="" cols="50" rows="10" class="w-100 border-1 border-primary" formControlName="summary"></textarea>
+              </div>
+            </div><!-- Row -->
+          </form>
+          <button type="submit" (click)="handelForm()" class="btn btn-primary submit">Send SOS</button>
+      </div>
+    </div>
+  </div>
+</div>

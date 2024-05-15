@@ -20,10 +20,14 @@ export class BloodBagService {
   deleteBag(id:string):Observable<any>{
     return this._HttpClient.delete(environment.baseApi.replace('auth','admin')+`bag/delete?id=${id}`)
   }
-  updateBag(model:any):Observable<any>{
-    console.log(model);
-
-    return this._HttpClient.put(environment.baseApi.replace('auth','admin')+`bag/update`,model)
+  updateBag(id:string,model:any):Observable<any>{
+    const finalModel:object={
+        id:id,
+        hospitalId: model.hospitalId,
+        bloodType:model.bloodType,
+        donorEmail:model.donorEmail,
+    }
+    return this._HttpClient.put(environment.baseApi.replace('auth','admin')+`bag/update`,finalModel)
   }
 
 

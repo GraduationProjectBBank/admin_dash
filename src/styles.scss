@@ -23,9 +23,374 @@
 @import "@swimlane/ngx-datatable/assets/icons.css";
 
 
-// NobleUI styles for LTR
+// DAshboard styles for LTR
 @import "./assets/scss/style";
 
 
-// NobleUI styles For RTL
+.my-header{
+  position: relative;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  font-size: 1.25rem;
+  letter-spacing: 4px;
+  font-weight: 500;
+  overflow: hidden;
+  background: linear-gradient(90deg, #000, #2949d5, #000);
+  background-repeat: no-repeat;
+  background-size: 80%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0);
+}
+
+@keyframes animate {
+  0% {
+    background-position: -500%;
+  }
+  100% {
+    background-position: 500%;
+  }
+}
+
+.hover-title:hover .my-header{
+  animation: animate 2.5s linear;
+  animation-iteration-count: 2;
+}
+.btn-12,
+.btn-12 *,
+.btn-12 :after,
+.btn-12 :before,
+.btn-12:after,
+.btn-12:before {
+  border: 0 solid;
+  box-sizing: border-box;
+}
+
+.btn-12 {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: button;
+  background-image: none;
+  color: #fff;
+  cursor: pointer;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-size: 100%;
+  font-weight: 900;
+  line-height: 1.5;
+  margin: 0;
+  -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
+  padding: 0;
+  text-transform: uppercase;
+}
+
+.btn-12:disabled {
+  cursor: default;
+}
+
+.btn-12:-moz-focusring {
+  outline: auto;
+}
+
+.btn-12 svg {
+  display: block;
+  vertical-align: middle;
+}
+
+.btn-12 [hidden] {
+  display: none;
+}
+
+.btn-12 {
+  border-radius: 99rem;
+  border-width: 2px;
+  overflow: hidden;
+  padding: 0.5rem 1.8rem;
+  position: relative;
+}
+
+.btn-12 span {
+  color: #fff;
+  width: fit-content;
+}
+
+
+.btn-12:after,
+.btn-12:before {
+  background: linear-gradient(
+    90deg,
+    #fff 25%,
+    transparent 0,
+    transparent 50%,
+    #fff 0,
+    #fff 75%,
+    transparent 0
+  );
+  content: "";
+  inset: 0;
+  position: absolute;
+  transform: translateY(var(--progress, 100%));
+  transition: transform 0.2s ease;
+}
+
+.btn-12:after {
+  --progress: -100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0,
+    transparent 25%,
+    #fff 0,
+    #fff 50%,
+    transparent 0,
+    transparent 75%,
+    #fff 0
+  );
+  z-index: -1;
+}
+
+.btn-12:hover:after,
+.btn-12:hover:before {
+  --progress: 0;
+}
+.btn-12:hover span {
+    mix-blend-mode: difference;
+}
+
+.add{
+  background:rgb(0, 240, 0);
+  letter-spacing: 3px;
+
+}
+.delete{
+  background:rgb(240, 0, 0);
+  letter-spacing: 1px;
+
+}
+.update{
+  background:rgb(246, 250, 3);
+  letter-spacing: 1px;
+
+}
+
+
+.all-dialog{
+  .dialog-design{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 800px;
+    height: fit-content;
+    color: #000000b7;
+  }
+  .header{
+    background: #a9a9a9;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 10px;
+    border-bottom: 1px #a9a9a9 solid;
+
+  }
+  .content{
+    background: #fff ;
+    padding: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  .body{
+    color: #000000b7;
+    padding: 10px;
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 20px;
+    }
+    .flex-column > label {
+          color: #4e4e4e;
+          font-weight: 600;
+          padding: 10px 0 0 0;
+    }
+
+  .inputForm,.input-date {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    transition: 0.2s ease-in-out;
+  }
+  .inputForm{
+    border-radius: 10px;
+    border: 1.5px solid #b9b9b9;
+  }
+
+  .input:not([date]) {
+    margin-left: 10px;
+    border-radius: 10px;
+    border: none;
+    width: 100%;
+    height: 100%;
+  }
+
+  .input:not([date]):focus {
+    // outline: rgb(96, 96, 96);
+    border: .5px solid #ffffff4b;
+
+  }
+
+  .inputForm:focus-within {
+    border: .5px solid #ffffff4b;
+  }
+
+  .flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+  }
+
+  .flex-row > div > label {
+    font-size: 14px;
+    color: white;
+    font-weight: 400;
+  }
+  input[type="date"]{
+    background-color: #b7b7b7;
+    padding: 15px;
+    margin-top: 5px;
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    left: 0%;
+    font-family: "Roboto Mono",monospace;
+    color: #4b4b4b;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+  }
+  ::-webkit-calendar-picker-indicator{
+    background-color: #ffffff;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  .Documents-btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: fit-content;
+    height: 45px;
+    border: none;
+    padding: 0px 15px;
+    border-radius: 5px;
+    background-color: rgb(49, 49, 83);
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .folderContainer {
+    width: 40px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+  }
+  .fileBack {
+    z-index: 1;
+    width: 80%;
+    height: auto;
+  }
+  .filePage {
+    width: 50%;
+    height: auto;
+    position: absolute;
+    z-index: 2;
+    transition: all 0.3s ease-out;
+  }
+  .fileFront {
+    width: 85%;
+    height: auto;
+    position: absolute;
+    z-index: 3;
+    opacity: 0.95;
+    transform-origin: bottom;
+    transition: all 0.3s ease-out;
+  }
+  .text {
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .Documents-btn:hover .filePage {
+    transform: translateY(-5px);
+  }
+  .Documents-btn:hover {
+    background-color: rgb(184, 184, 184);
+  }
+  .Documents-btn:active {
+    transform: scale(0.95);
+  }
+  .Documents-btn:hover .fileFront {
+    transform: rotateX(30deg);
+  }
+  textarea{
+    width: 100%;
+    height: 15dvh;
+
+  }
+  textarea:focus{
+    outline: none;
+  }
+  .input-container{
+    display: flex;
+  }
+}
+  .action{
+    padding: 10px;
+      button,.cancel {
+        padding: 1.3em 3em;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 2.5px;
+        font-weight: 500;
+        color: #000;
+        background-color: #fff;
+        border: none;
+        border-radius: 45px;
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease 0s;
+        cursor: pointer;
+        outline: none;
+      }
+
+      button:hover {
+        background-color: #3a9872;
+        box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+        color: #fff;
+        transform: translateY(-7px);
+      }
+      .cancel:hover {
+        background-color: red;
+        box-shadow: 0px 15px 20px rgba(229, 46, 46, 0.4);
+        color: #fff;
+        transform: translateY(-7px);
+      }
+
+      button:active,.cancel {
+        transform: translateY(-1px);
+      }
+    }
+}
+@media screen and (max-width:700px) {
+  .dialog-design{
+    max-width: 55%;
+    margin: 0 auto;
+}
+}
+
 // @import "./assets/scss/style.rtl.css";
