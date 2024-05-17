@@ -13,10 +13,6 @@ import { NgbDropdownModule, NgbTooltipModule, NgbNavModule, NgbCollapseModule } 
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AppsComponent } from './apps.component';
 import { ticketComponent } from './ticket/ticket.component';
-import { EmailComponent } from './email/email.component';
-import { InboxComponent } from './email/inbox/inbox.component';
-import { ReadComponent } from './email/read/read.component';
-import { ComposeComponent } from './email/compose/compose.component';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
@@ -52,29 +48,6 @@ const routes: Routes = [
         path: '',
         redirectTo: 'ticket',
         pathMatch: 'full',
-      },
-      {
-        path: 'email',
-        component: EmailComponent,
-        children: [
-          {
-            path: '',
-            redirectTo: 'inbox',
-            pathMatch: 'full'
-          },
-          {
-            path: 'inbox',
-            component: InboxComponent
-          },
-          {
-            path: 'read',
-            component: ReadComponent
-          },
-          {
-            path: 'compose',
-            component: ComposeComponent
-          }
-        ]
       },
       {
         path: 'ticket',
@@ -116,7 +89,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [EmailComponent,UsersComponent, HospitalComponent ,ticketComponent,EmergencyComponent,CreateEmergencyComponent,AllEmergencyComponent, AppsComponent, InboxComponent, ReadComponent, ComposeComponent, BloodBagComponent],
+  declarations: [UsersComponent, HospitalComponent ,ticketComponent,EmergencyComponent,CreateEmergencyComponent,AllEmergencyComponent, AppsComponent, BloodBagComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

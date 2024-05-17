@@ -15,12 +15,13 @@ export class HospitalComponent implements OnInit {
   constructor(private _HospitalService:HospitalService,
   ) { }
   hospitals:Hospital[]
+  // timeId:any
   hospitalChange:Hospital= {frontMatter:{title:''}} as Hospital
   createHospital:FormGroup= new FormGroup({
     title: new FormControl('',[Validators.required]),
     date: new FormControl('',[Validators.required]),
     description: new FormControl('',[Validators.required]),
-    image: new FormControl('',[Validators.required])
+    image2: new FormControl('',[Validators.required])
   })
 
   ngOnInit(): void {
@@ -54,8 +55,6 @@ export class HospitalComponent implements OnInit {
     }
 
   newHospital():void{
-    console.log(this.createHospital.valid);
-
     if (this.createHospital.valid) {
     this._HospitalService.createHospital(this.createHospital.value).subscribe({
       next:(response)=>{
@@ -70,8 +69,10 @@ export class HospitalComponent implements OnInit {
     this._HospitalService.allHospital.subscribe({
       next:(response)=>{
         this.hospitals=response
+      //   this.timeId=setTimeout(() => {
+      //     this.myAnimate()
+      //   }, 500);
       }
-
     })
   }
   delHospital():void{
@@ -94,77 +95,26 @@ export class HospitalComponent implements OnInit {
     })
   }
 
+  // myAnimate():void{
+  //   clearTimeout(this.timeId)
+  //   let myCards= document.querySelectorAll('.my-cards')
+  //   const option={
+  //     threshold:1,
+  //     root:null,
+  //     // rootmargin:'40px 0px 40px 0px'
+  //   }
 
+  //   const interSection:any = new IntersectionObserver(entries=>{
+  //     entries.forEach(elment =>{
+  //       elment.target.classList.toggle('slide',elment.isIntersecting)
 
-//   openUpdate(ticket:Ticket){
-//     this.createTicket.setValue({ownerEmail:ticket.ownerEmail ,
-//        hospitalID:ticket.hospitalID ,
-//        donationDate:ticket.donationDate,
-//        expiryDate:ticket.expiryDate,
-//        transferDate:ticket.transferDate,
-//       })
-//       $('.updateDialog').slideDown(400)
-//   }
-//   closeUpdate():void{
-//     this.createTicket.reset('')
-//     $('.updateDialog').slideUp(400)
-//   }
+  //     })
 
-
-
-
-//   openDelete(ticket:Ticket){
-//       this.ticketWillDelete=ticket
-//       $('.deleteDialog').slideDown(400)
-//   }
-//   closeDelete():void{
-//     $('.deleteDialog').slideUp(400)
-//   }
-
-
-
-
-
-//   updateTicket():void{
-
-//     if(this.createTicket.valid){
-//       this._TicketService.updateTicket(this.createTicket.value).subscribe({
-//         next:(response)=>{
-//           this.closeUpdate()
-//           this._TicketService.assignValue()
-//         }
-//       })
-
-//     }
-
-//   }
-//   newTicket():void{
-
-//     if(this.createTicket.valid){
-//       this._TicketService.createTicket(this.createTicket.value).subscribe({
-//         next:(response)=>{
-//           this.closeAdd()
-//           this._TicketService.assignValue()
-//         }
-//       })
-
-//     }
-
-
-//   }
-
-
-//   delTicket():void{
-
-//     this._TicketService.deleteTicket(this.ticketWillDelete.id).subscribe({
-//       next:(response)=>{
-//         this.closeDelete()
-//         this._TicketService.assignValue()
-//       }
-
-//     })
-//   }
-
+  //   },option)
+  //   myCards.forEach((card:any) => {
+  //     interSection.observe(card)
+  //   });
+  // }
 
 
 }

@@ -156,7 +156,7 @@ export class DashboardComponent implements OnInit {
     this._AdminService.newAdmin(this.userWillAdmin.email).subscribe({
       next:(response)=>{
         this.closeDialog()
-        this.getAllUsers()
+        this._AdminService.assignUsers()
 
       }
     })

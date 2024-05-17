@@ -180,6 +180,7 @@
     width: 800px;
     height: fit-content;
     color: #000000b7;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
   }
   .header{
     background: #a9a9a9;
@@ -385,6 +386,25 @@
         transform: translateY(-1px);
       }
     }
+}
+
+.slide{
+  // opacity: 0;
+  // transform: translateX(-105%);
+  animation: trans 1s linear ;
+  // animation-iteration-count: 1;
+}
+
+
+@keyframes trans {
+  0%{
+    opacity: 0;
+    transform: translateX(-105%);
+  }
+  100%{
+    opacity: 1;
+    transform: translateX(0%);
+  }
 }
 @media screen and (max-width:700px) {
   .dialog-design{
