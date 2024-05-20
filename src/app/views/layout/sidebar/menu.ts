@@ -24,6 +24,21 @@ export const MENU: MenuItem[] = [
     link: '/apps/ticket',
   },
   {
+    label: 'Blog',
+    icon:'globe',
+    link: '/apps/Blog',
+    subItems: [
+      {
+        label: 'New Blog',
+        link: '/apps/blog/new-blog',
+      },
+      {
+        label: 'All Blogs',
+        link: '/apps/blog/all-blog'
+      }
+    ]
+  },
+  {
     label: 'Hospital',
     isTitle: true
   },

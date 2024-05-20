@@ -17,6 +17,8 @@ import { ticketComponent } from './ticket/ticket.component';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -37,6 +39,10 @@ import { HospitalComponent } from './hospital/hospital.component';
 import { EmergencyComponent } from './emergency/emergency.component';
 import { CreateEmergencyComponent } from './emergency/create-emergency/create-emergency.component';
 import { AllEmergencyComponent } from './emergency/All-emergency/all-emergency.component';
+import { BlogComponent } from './blog/blog.component';
+import { InsightComponent } from './insight/insight.component';
+import { CreateBlogComponent } from './blog/create-blog/create-blog.component';
+import { AllBlogComponent } from './blog/all-blog/all-blog.component';
 
 
 const routes: Routes = [
@@ -52,6 +58,25 @@ const routes: Routes = [
       {
         path: 'ticket',
         component: ticketComponent
+      },
+      {
+        path: 'blog',
+        component: BlogComponent,
+        children: [
+          {
+            path: '',
+            redirectTo: 'new-blog',
+            pathMatch: 'full'
+          },
+          {
+            path: 'new-blog',
+            component: CreateBlogComponent
+          },
+          {
+            path: 'all-blog',
+            component: AllBlogComponent
+          }
+        ]
       },
       {
         path: 'emergency',
@@ -89,7 +114,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [UsersComponent, HospitalComponent ,ticketComponent,EmergencyComponent,CreateEmergencyComponent,AllEmergencyComponent, AppsComponent, BloodBagComponent],
+  declarations: [UsersComponent, HospitalComponent ,ticketComponent,EmergencyComponent,CreateEmergencyComponent,AllEmergencyComponent, AppsComponent, BloodBagComponent, BlogComponent, InsightComponent, CreateBlogComponent, AllBlogComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -102,6 +127,7 @@ const routes: Routes = [
     NgbCollapseModule,
     NgSelectModule,
     ReactiveFormsModule,
+    CarouselModule,
     QuillModule.forRoot(), // ngx-quill
 
   ],

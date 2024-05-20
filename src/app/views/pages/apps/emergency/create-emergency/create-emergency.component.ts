@@ -19,10 +19,9 @@ export class CreateEmergencyComponent implements OnInit {
     level:new FormControl('',[Validators.required]),
     date:new FormControl('',[Validators.required]),
     summary:new FormControl('',[Validators.required]),
-    site:new FormControl('',[Validators.required]),
+    category:new FormControl('',[Validators.required]),
     location:new FormControl('',[Validators.required])
   })
-
 
   ngOnInit(): void {
 
@@ -38,7 +37,7 @@ export class CreateEmergencyComponent implements OnInit {
             level:'',
             date:'',
             summary:'',
-            site:'',
+            category:'',
             location:''
           })
 

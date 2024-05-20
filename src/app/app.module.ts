@@ -14,6 +14,7 @@ import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MyInterceptorsModule } from './core/interceptors/my-interceptors/my-interceptors.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,8 @@ import { MyInterceptorsModule } from './core/interceptors/my-interceptors/my-int
     HttpClientModule,
     NgxSpinnerModule,
     MyInterceptorsModule,
+    RouterModule,
+
 
 
   ],

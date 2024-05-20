@@ -39,6 +39,7 @@
             <i class="link-icon" [attr.data-feather]="item.icon" appFeatherIcon *ngIf="item.icon"></i>
             <i class="fa-solid fa-hospital link-icon" *ngIf="item.label == 'hospitals'"></i>
             <i class="fa-solid fa-truck-medical link-icon" *ngIf="item.label == 'Emergency'"></i>
+            <i class="fa-solid fa-blog link-icon" *ngIf="item.label == 'Blog'"></i>
             <i class="fa-solid fa-ticket link-icon" *ngIf="item.label == 'Ticket'"></i>
             <i class="fa-solid fa-hand-holding-droplet link-icon" *ngIf="item.label == 'Blood Bag'"></i>
             <span class="link-title" (click)="item.label=='LogOut' ? logOut():null"> {{ item.label }}</span>

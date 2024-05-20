@@ -20,7 +20,7 @@ export class AllEmergencyComponent implements OnInit {
     level:new FormControl('',[Validators.required]),
     date:new FormControl('',[Validators.required]),
     summary:new FormControl('',[Validators.required]),
-    site:new FormControl('',[Validators.required]),
+    category:new FormControl('',[Validators.required]),
     location:new FormControl('',[Validators.required])
   })
   emergencyActions:Emergency
@@ -48,7 +48,7 @@ export class AllEmergencyComponent implements OnInit {
       level:emergency.frontMatter.level,
       date:emergency.frontMatter.date,
       summary:emergency.frontMatter.summary,
-      site:emergency.frontMatter.site,
+      category:emergency.frontMatter.category,
       location:emergency.frontMatter.location
     })
 
@@ -78,8 +78,6 @@ export class AllEmergencyComponent implements OnInit {
       if(this.emergForm.valid){
         this._EmergencyService.updateEmergency(this.emergForm.value).subscribe({
           next:(response)=>{
-            console.log(response);
-
             this.allEmergency()
 
           }

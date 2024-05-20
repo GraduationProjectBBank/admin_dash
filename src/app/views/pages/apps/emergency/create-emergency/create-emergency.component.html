@@ -13,8 +13,8 @@
               </div><!-- Col -->
               <div class="col-sm-6">
                 <div class="mb-3">
-                  <label class="form-label">Site</label>
-                  <input type="text" class="form-control border-1 border-primary" placeholder="Enter Site of Emergency" formControlName="site">
+                  <label class="form-label">Location</label>
+                  <input type="text" class="form-control border-1 border-primary" placeholder="Enter location of emergency" formControlName="location">
                 </div>
               </div><!-- Col -->
             </div><!-- Row -->
@@ -27,8 +27,15 @@
               </div>Col -->
               <div class="col-sm-4">
                 <div class="mb-3">
-                  <label class="form-label">Location</label>
-                  <input type="text" class="form-control border-1 border-primary" placeholder="Enter location of emergency" formControlName="location">
+                  <label for="category">Choose Type</label>
+                   <select id="category" class=" form-control mb-3 mt-2 border-1 border-primary"  formControlName="category">
+                    <option value="A-">A-</option>
+                    <option value="A+">A+</option>
+                    <option value="B-">B-</option>
+                    <option value="B+">B+</option>
+                    <option value="O-">O-</option>
+                    <option value="O+">O+</option>
+                   </select>
                 </div>
               </div><!-- Col -->
               <div class="col-sm-4">
