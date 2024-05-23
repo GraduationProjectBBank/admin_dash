@@ -11,8 +11,11 @@ export class EmergencyService {
   constructor(private _HttpClient:HttpClient) { }
 
   createEmergency(model:any):Observable<any>{
+    const myContent:string=model.content
+    delete model.content
     let emerg:object = {
-      frontMatter:model
+      frontMatter:model,
+      content:myContent
     }
     return this._HttpClient.post(environment.baseApi.replace('auth','admin')+`emergency/create`,emerg)
   }

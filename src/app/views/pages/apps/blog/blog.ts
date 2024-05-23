@@ -1,6 +1,7 @@
 export interface Blog {
   frontMatter: FrontMatter
   content: string
+  id:string
 }
 
 export interface FrontMatter {

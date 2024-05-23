@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HospitalService } from './services/hospital.service';
 import { Hospital } from './hospital';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 import * as $ from 'jquery';
 
 @Component({
@@ -11,11 +12,10 @@ import * as $ from 'jquery';
 })
 export class HospitalComponent implements OnInit {
 
-
   constructor(private _HospitalService:HospitalService,
   ) { }
-  hospitals:Hospital[]
-  // timeId:any
+  myHospital:Hospital[]
+  file:any
   hospitalChange:Hospital= {frontMatter:{title:''}} as Hospital
   createHospital:FormGroup= new FormGroup({
     title: new FormControl('',[Validators.required]),
@@ -23,9 +23,86 @@ export class HospitalComponent implements OnInit {
     description: new FormControl('',[Validators.required]),
     image2: new FormControl('',[Validators.required])
   })
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: false,
+    touchDrag: true,
+    pullDrag: true,
+    dots: false,
+    autoplay:true,
+    autoplayHoverPause:true,
+    margin:15,
+    navSpeed: 500,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 4
+      }
+    },
+    nav: true
+  }
 
   ngOnInit(): void {
       this.allHospital()
+
+  }
+
+  newHospital():void{
+    const formData = new FormData();
+    formData.append('image', this.file);
+    if (this.createHospital.valid) {
+    this._HospitalService.createHospital(this.createHospital.value).subscribe({
+      next:(response)=>{
+        this.addImage(response.id,formData)
+        this.toggelAdd()
+      }
+    })
+
+    }
+  }
+
+  addImage(id:string,model:any):void{
+    this._HospitalService.putImage(model,id).subscribe({
+      next:(response)=>{
+        this._HospitalService.assignValue()
+      }
+    })
+  }
+
+  allHospital():void{
+    this._HospitalService.allHospital.subscribe({
+      next:(response)=>{
+        this.myHospital=response
+      }
+    })
+  }
+  delHospital():void{
+
+    this._HospitalService.deleteHospital(this.hospitalChange.id).subscribe({
+      next:(response)=>{
+        this.closeDelete()
+        this._HospitalService.assignValue()
+      }
+    })
+
+  }
+  updateHospital():void{
+    this._HospitalService.updateHospital(this.hospitalChange.id,this.createHospital.value).subscribe({
+      next:(response)=>{
+        this.closeUpdate()
+        this._HospitalService.assignValue()
+
+      }
+    })
   }
   toggelAdd():void{
     $('.addDialog').slideToggle(400)
@@ -54,67 +131,18 @@ export class HospitalComponent implements OnInit {
 
     }
 
-  newHospital():void{
-    if (this.createHospital.valid) {
-    this._HospitalService.createHospital(this.createHospital.value).subscribe({
-      next:(response)=>{
-        this.toggelAdd()
-        this._HospitalService.assignValue()
-      }
-    })
-
+    getFile(event:any){
+      this.file=event.target.files[0]
     }
-  }
-  allHospital():void{
-    this._HospitalService.allHospital.subscribe({
-      next:(response)=>{
-        this.hospitals=response
-      //   this.timeId=setTimeout(() => {
-      //     this.myAnimate()
-      //   }, 500);
-      }
-    })
-  }
-  delHospital():void{
+    getMonthName(dateString:any) {
+      // Split the date string into year, month, and day
+      const [year, month, day] = dateString.split('-');
+      // Create a Date object
+      const date = new Date(year, month - 1, day); // Month is zero-based
 
-    this._HospitalService.deleteHospital(this.hospitalChange.id).subscribe({
-      next:(response)=>{
-        this.closeDelete()
-        this._HospitalService.assignValue()
-      }
-    })
+      // Get the month name
+      const monthName = date.toLocaleString('default', { month: 'long' });
 
-  }
-  updateHospital():void{
-    this._HospitalService.updateHospital(this.hospitalChange.id,this.createHospital.value).subscribe({
-      next:(response)=>{
-        this.closeUpdate()
-        this._HospitalService.assignValue()
-
-      }
-    })
-  }
-
-  // myAnimate():void{
-  //   clearTimeout(this.timeId)
-  //   let myCards= document.querySelectorAll('.my-cards')
-  //   const option={
-  //     threshold:1,
-  //     root:null,
-  //     // rootmargin:'40px 0px 40px 0px'
-  //   }
-
-  //   const interSection:any = new IntersectionObserver(entries=>{
-  //     entries.forEach(elment =>{
-  //       elment.target.classList.toggle('slide',elment.isIntersecting)
-
-  //     })
-
-  //   },option)
-  //   myCards.forEach((card:any) => {
-  //     interSection.observe(card)
-  //   });
-  // }
-
-
+      return monthName + ','+ day;
+    }
 }

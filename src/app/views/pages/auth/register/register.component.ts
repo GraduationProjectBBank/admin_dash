@@ -24,11 +24,12 @@ export class RegisterComponent implements OnInit {
   //   }
   // }
 
-
-
+  formValue:any
 
   registerForm:FormGroup= new FormGroup({
     email:new FormControl('',[Validators.email,Validators.required]) ,
+    gender:new FormControl('',[Validators.required]) ,
+    bloodType:new FormControl('',[Validators.required]) ,
     password:new FormControl('',[Validators.pattern('.{8,}'),Validators.required]) ,
     username:new FormControl('',[Validators.pattern('([a-zA-Z]){3,}'),Validators.required]) ,
     firstName:new FormControl('',[Validators.pattern('([a-zA-Z]){2,}'),Validators.required]) ,
@@ -38,16 +39,23 @@ export class RegisterComponent implements OnInit {
 
   handelForm():void{
     if( this.registerForm.valid ){
-      console.log(this.registerForm.value);
+      this.formValue=this.registerForm.value
       this._AuthService.register(this.registerForm.value).subscribe({
         next:(response)=>{
-          console.log(response);
-
+          localStorage.setItem('token',response.registerResponse.idToken)
+          this.sendMoreData()
           this._Router.navigate(['/auth/varify'])
         }
       })
 
     }
+  }
+  sendMoreData():void{
+    this._AuthService.updateUser(this.registerForm.value).subscribe({
+      next:(response)=>{
+        console.log(response);
+      }
+    })
   }
 
 }

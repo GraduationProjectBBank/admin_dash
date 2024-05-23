@@ -11,6 +11,7 @@ export class CreateBlogComponent implements OnInit {
 
   constructor( private _BlogService:BlogService) { }
   imageName:string
+  file:File
   blogForm:FormGroup = new FormGroup({
     title:new FormControl('',[Validators.required]),
     author: new FormGroup({
@@ -33,11 +34,15 @@ export class CreateBlogComponent implements OnInit {
 
   handelForm():void{
     const nestedForm = this.blogForm.get('author') as FormGroup
+    const formData = new FormData();
+    formData.append('image', this.file);
 
     if(this.blogForm.valid && nestedForm.valid){
       this._BlogService.createBlog(this.blogForm.value).subscribe({
         next:(response)=>{
           console.log(response);
+          this.addImage(response.id,formData)
+          this.blogForm.reset('')
         }
       })
 
@@ -46,9 +51,20 @@ export class CreateBlogComponent implements OnInit {
   }
 
 
+  addImage(id:string,model:any):void{
+    this._BlogService.putImage(model,id).subscribe({
+      next:(response)=>{
+        console.log(response);
+
+        this._BlogService.assignBlogs()
+      }
+    })
+  }
+
+
   getImageName(event:any):void{
     this.imageName=event.target.files[0].name
-
+    this.file=event.target.files[0]
   }
 
 }

@@ -1,3 +1,4 @@
+
 <div class="row">
   <div class="col-md-12 stretch-card">
     <div class="card hover-title">
@@ -5,7 +6,7 @@
         <h6 class="card-title my-header">New Emergency</h6>
           <form [formGroup]="emergForm" (submit)="handelForm()">
             <div class="row">
-              <div class="col-sm-6">
+              <div class="col-md-6">
                 <div class="mb-3">
                   <label class="form-label">Title</label>
                   <input type="text" class="form-control border-1 border-primary" placeholder="Enter Title of Emergency" formControlName="title">
@@ -17,15 +18,29 @@
                   <input type="text" class="form-control border-1 border-primary" placeholder="Enter location of emergency" formControlName="location">
                 </div>
               </div><!-- Col -->
+
             </div><!-- Row -->
             <div class="row">
-              <!-- <div class="col-sm-4">
-                <div class="mb-3">
-                  <label class="form-label">City</label>
-                  <input type="text" class="form-control border-1 border-primary" placeholder="Enter city">
+              <div class="col-md-3 d-flex align-items-center">
+                <div class="doc d-flex">
+                  <label for="images">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 3H12H8C6.34315 3 5 4.34315 5 6V18C5 19.6569 6.34315 21 8 21H11M13.5 3L19 8.625M13.5 3V7.625C13.5 8.17728 13.9477 8.625 14.5 8.625H19M19 8.625V11.8125" stroke="#fffffff" stroke-width="2"></path>
+                  <path d="M17 15V18M17 21V18M17 18H14M17 18H20" stroke="#fffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  ADD image
+                  </label>
+                  <input type="file" (change)="getImageName($event)" class="d-none" id="images" formControlName="image">
                 </div>
-              </div>Col -->
-              <div class="col-sm-4">
+                <span class=" bg-black text-white p-1 rounded-1 ms-2 shadow-md" *ngIf="imageName">{{imageName}}</span>
+              </div>
+              <div class="col-md-3 position-relative">
+                <div class="mb-3">
+                  <label class="form-label my-0 my-md-1">Date</label>
+                  <input type="date" class="form-control border-2 border-primary" formControlName="date">
+                </div>
+              </div><!-- Col -->
+              <div class="col-md-3">
                 <div class="mb-3">
                   <label for="category">Choose Type</label>
                    <select id="category" class=" form-control mb-3 mt-2 border-1 border-primary"  formControlName="category">
@@ -38,7 +53,7 @@
                    </select>
                 </div>
               </div><!-- Col -->
-              <div class="col-sm-4">
+              <div class="col-md-3">
                 <label for="">Choose Level</label>
                <select id="level" class=" form-control mb-3 mt-2 border-1 border-primary"  formControlName="level">
                 <option value="Low">Low</option>
@@ -46,23 +61,19 @@
                 <option value="High">High</option>
                </select>
               </div>
-              <div class="col-sm-4 position-relative mb-4 mb-sm-0">
-                <div class="mb-3">
-                  <label class="form-label mb-5 mb-sm-0">Date</label>
-                  <input type="date" class="form-control" formControlName="date">
-                </div>
-              </div><!-- Col -->
+              <div class="col-md-5">
+                <label for="summary" class="form-label">Summary</label>
+                <textarea cols="15" rows="10" id="summary" class="border-1 w-100 border-primary rounded-2" placeholder="Summary of your Emergency" formControlName="summary"></textarea>
+              </div><!-- col -->
+              <div class="col-md-7">
+                <label for="content" class="form-label">Content</label>
+                <textarea name="" cols="15" rows="10" id="content" class=" border-1 w-100 border-primary rounded-2" placeholder="content of your Emergency"  formControlName="content"></textarea>
+              </div><!-- col -->
 
             </div><!-- Row -->
-            <div class="row">
 
-              <div class="col-sm-8">
-                <label for="">Summary</label>
-                <textarea id="" cols="50" rows="10" class="w-100 border-1 border-primary" formControlName="summary"></textarea>
-              </div>
-            </div><!-- Row -->
           </form>
-          <button type="submit" (click)="handelForm()" class="btn btn-primary submit">Send SOS</button>
+          <button type="submit" (click)="handelForm()" class="btn btn-dark submit">New SoS</button>
       </div>
     </div>
   </div>

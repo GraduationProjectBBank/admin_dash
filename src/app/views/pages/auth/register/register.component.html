@@ -126,6 +126,7 @@
                     </div>
                   </div>
               </div>
+
               <div class="form-elment">
                 <div class="flex-column">
                   <label>Email </label>
@@ -202,6 +203,48 @@
                       </div>
                     </div>
                   </div>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="form-elment w-100">
+                  <div class="flex-column">
+                    <label>Gender</label>
+                  </div>
+                    <div class="">
+                      <select class="p-2 rounded-2 cursor-pointer w-50" formControlName="gender">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                      </select>
+                   </div>
+                    <div class="notifications-container my-1 mx-auto" *ngIf="registerForm.get('username')?.touched && registerForm.get('username')?.errors">
+                      <div class="error-alert">
+                        <div class="flex">
+                          <div class="error-prompt-container">
+                            <p class="error-prompt-heading">User Name must be
+                            </p>
+                            <div class="error-prompt-wrap">
+                              <ul class="error-prompt-list" role="list">
+                                <li *ngIf="registerForm.get('gender')?.getError('required')" >is required </li>
+                              </ul>
+                          </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="form-elment w-100">
+                  <div class="flex-column">
+                    <label>Choose Blood Type</label></div>
+                    <div class="inputFor">
+                      <select class="w-50 p-2 rounded-2 cursor-pointer" formControlName="bloodType">
+                        <option value="O-">O-</option>
+                        <option value="O+">O+</option>
+                        <option value="A-">A-</option>
+                        <option value="A+">A+</option>
+                        <option value="B-">B-</option>
+                        <option value="B+">B+</option>
+                      </select>
+                    </div>
+                </div>
               </div>
 
               <button class="button-submit" type="submit" >Register</button>

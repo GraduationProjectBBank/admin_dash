@@ -291,7 +291,7 @@
               </tr>
             </thead>
             <tbody class="text-capitalize">
-              <tr *ngFor="let user of myUsers ; let i = index " class="cursor-pointer" (click)="openDialog(user)">
+              <tr *ngFor="let user of myUsers; let i = index " class="cursor-pointer" (click)="openDialog(user)">
                 <td>{{i+1}}</td>
                 <td class="pt-2" *ngIf="user.gender=='male'"><img src="../../../../assets/img/BG/undraw_male_avatar_g98d.svg" class="rounded-circle wd-35" alt="user"></td>
                 <td class="pt-2" *ngIf="user.gender!='male'"><img src="../../../../assets/img/BG/undraw_female_avatar_efig.svg" class="rounded-circle wd-35" alt="user"></td>

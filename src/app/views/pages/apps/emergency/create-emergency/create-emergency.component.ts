@@ -13,14 +13,17 @@ export class CreateEmergencyComponent implements OnInit {
 
 
   constructor(private _EmergencyService:EmergencyService) { }
+  imageName:string
 
   emergForm:FormGroup = new FormGroup({
     title:new FormControl('',[Validators.required]),
     level:new FormControl('',[Validators.required]),
     date:new FormControl('',[Validators.required]),
+    image:new FormControl('',[Validators.required]),
     summary:new FormControl('',[Validators.required]),
     category:new FormControl('',[Validators.required]),
-    location:new FormControl('',[Validators.required])
+    location:new FormControl('',[Validators.required]),
+    content:new FormControl('',[Validators.required]),
   })
 
   ngOnInit(): void {
@@ -46,5 +49,7 @@ export class CreateEmergencyComponent implements OnInit {
     }
 
   }
-
+  getImageName(event:any):void{
+      this.imageName=event.target.files[0].name
+  }
 }

@@ -2,6 +2,8 @@ import { Component, OnInit   } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EmergencyService } from '../create-emergency/service/emergency.service';
 import { Emergency } from './emergency';
+import { OwlOptions } from 'ngx-owl-carousel-o';
+
 
 
 
@@ -14,7 +16,33 @@ export class AllEmergencyComponent implements OnInit {
 
   myEmergency:Emergency[]
   constructor(private _EmergencyService:EmergencyService) { }
-
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: false,
+    touchDrag: true,
+    pullDrag: true,
+    dots: false,
+    autoplay:true,
+    autoplayHoverPause:true,
+    margin:15,
+    navSpeed: 500,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 4
+      }
+    },
+    nav: true
+  }
   emergForm:FormGroup = new FormGroup({
     title:new FormControl('',[Validators.required]),
     level:new FormControl('',[Validators.required]),
@@ -85,6 +113,16 @@ export class AllEmergencyComponent implements OnInit {
       }
 
     }
+    getMonthName(dateString:any) {
+      // Split the date string into year, month, and day
+      const [year, month, day] = dateString.split('-');
+      // Create a Date object
+      const date = new Date(year, month - 1, day); // Month is zero-based
 
+      // Get the month name
+      const monthName = date.toLocaleString('default', { month: 'long' });
+
+      return monthName + ','+ day;
+    }
 
 }

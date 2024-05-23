@@ -1,4 +1,4 @@
-
+<!--
 <div id="container" class="updateDialog all-dialog">
   <div class="dialog-design">
     <div class="header d-flex justify-content-between align-items-center">
@@ -134,7 +134,35 @@
       </div>
      </div>
 
-  </div>
+  </div> -->
+  <div class="h3 my-header mb-2">Review Hospital</div>
+  <owl-carousel-o [options]="customOptions" >
+
+    <ng-container *ngFor="let hospital of myHospital.slice(0,8)">
+      <ng-template carouselSlide>
+        <div class=" position-relative animate">
+          <img [src]="hospital.frontMatter.image2" [alt]="hospital.frontMatter.title" height="200" class="rounded-2 shadow-sm" [title]="hospital.frontMatter.title">
+          <div class="date-span disapeer rounded-2 text-center position-absolute w-100 bg-primary text-white top-0 bg-opacity-75 cursor-pointer start-0 p-2">
+            <span class=" text-truncate fw-bold ">{{hospital.frontMatter.title}}</span>
+          </div>
+          <div class="text-white my-card bg-black bg-opacity-75 top-0 bottom-0 end-0 start-0 position-absolute p-3 h-100 w-100 rounded-2">
+            <div class="h5 fw-bold text-truncate">{{hospital.frontMatter.title}}</div>
+            <div class="body mt-2 d-flex flex-column">
+              <p class=" truncate-three-lines">{{hospital.frontMatter.description}}</p>
+              <div class="d-flex justify-content-between align-items-center mt-2">
+                <span class="date-span left">{{hospital.frontMatter.draft==false ? 'Available':'Not ِvailable'}}</span>
+                <span class="date-span right ">{{getMonthName(hospital.frontMatter.date.split('T')[0])}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ng-container>
+
+  </owl-carousel-o>
+
+
+
 
 <div id="container" class="addDialog all-dialog" >
   <div class="dialog-design">
@@ -165,92 +193,17 @@
             </div>
             <div class="form-elment">
               <div class="flex-column">
-                <label>Image </label></div>
-                <div class="input-de position-relative">
-                    <label for="img" class="Documents-btn">
-                      <span class="folderContainer">
-                        <svg
-                          class="fileBack"
-                          width="146"
-                          height="113"
-                          viewBox="0 0 146 113"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M0 4C0 1.79086 1.79086 0 4 0H50.3802C51.8285 0 53.2056 0.627965 54.1553 1.72142L64.3303 13.4371C65.2799 14.5306 66.657 15.1585 68.1053 15.1585H141.509C143.718 15.1585 145.509 16.9494 145.509 19.1585V109C145.509 111.209 143.718 113 141.509 113H3.99999C1.79085 113 0 111.209 0 109V4Z"
-                            fill="url(#paint0_linear_117_4)"
-                          ></path>
-                          <defs>
-                            <linearGradient
-                              id="paint0_linear_117_4"
-                              x1="0"
-                              y1="0"
-                              x2="72.93"
-                              y2="95.4804"
-                              gradientUnits="userSpaceOnUse"
-                            >
-                              <stop stop-color="#8F88C2"></stop>
-                              <stop offset="1" stop-color="#5C52A2"></stop>
-                            </linearGradient>
-                          </defs>
-                        </svg>
-                        <svg
-                          class="filePage"
-                          width="88"
-                          height="99"
-                          viewBox="0 0 88 99"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <rect width="88" height="99" fill="url(#paint0_linear_117_6)"></rect>
-                          <defs>
-                            <linearGradient
-                              id="paint0_linear_117_6"
-                              x1="0"
-                              y1="0"
-                              x2="81"
-                              y2="160.5"
-                              gradientUnits="userSpaceOnUse"
-                            >
-                              <stop stop-color="white"></stop>
-                              <stop offset="1" stop-color="#686868"></stop>
-                            </linearGradient>
-                          </defs>
-                        </svg>
-
-                        <svg
-                          class="fileFront"
-                          width="160"
-                          height="79"
-                          viewBox="0 0 160 79"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M0.29306 12.2478C0.133905 9.38186 2.41499 6.97059 5.28537 6.97059H30.419H58.1902C59.5751 6.97059 60.9288 6.55982 62.0802 5.79025L68.977 1.18034C70.1283 0.410771 71.482 0 72.8669 0H77H155.462C157.87 0 159.733 2.1129 159.43 4.50232L150.443 75.5023C150.19 77.5013 148.489 79 146.474 79H7.78403C5.66106 79 3.9079 77.3415 3.79019 75.2218L0.29306 12.2478Z"
-                            fill="url(#paint0_linear_117_5)"
-                          ></path>
-                          <defs>
-                            <linearGradient
-                              id="paint0_linear_117_5"
-                              x1="38.7619"
-                              y1="8.71323"
-                              x2="66.9106"
-                              y2="82.8317"
-                              gradientUnits="userSpaceOnUse"
-                            >
-                              <stop stop-color="#C3BBFF"></stop>
-                              <stop offset="1" stop-color="#51469A"></stop>
-                            </linearGradient>
-                          </defs>
-                        </svg>
-                      </span>
-                      <p class="text">Documents</p>
-                    </label>
-                  <input type="file" class="d-none" id="img" formControlName="image2">
-
+                <div class="doc d-flex">
+                  <label for="images">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 3H12H8C6.34315 3 5 4.34315 5 6V18C5 19.6569 6.34315 21 8 21H11M13.5 3L19 8.625M13.5 3V7.625C13.5 8.17728 13.9477 8.625 14.5 8.625H19M19 8.625V11.8125" stroke="#fffffff" stroke-width="2"></path>
+                  <path d="M17 15V18M17 21V18M17 18H14M17 18H20" stroke="#fffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  ADD image
+                  </label>
+                  <input type="file" (change)="getFile($event)" class="d-none" id="images" formControlName="image2">
                 </div>
+            </div>
             </div>
           </div>
           <div class="form-elment">
@@ -300,11 +253,11 @@
     </div>
 
     </div>
-    <div class="col-md-6 col-lg-4 shadow-sm my-cards" *ngFor="let hospital of hospitals">
+    <div class="col-md-6 col-lg-4 shadow-sm my-cards" *ngFor="let hospital of myHospital">
       <div class="inner h-100 rounded-3">
         <div class="card h-100">
           <div class="card-img">
-            <img [src]="hospital.frontMatter.image2 != null ? hospital.frontMatter.image2 : 'assets/img/BG/imageName.png'" height="300" class="card-img-top" [alt]="hospital.frontMatter.title">
+            <img [src]="hospital.frontMatter.image2" height="300" class="card-img-top" [alt]="hospital.frontMatter.title">
           </div>
           <div class="card-body px-3 ">
             <h5 class="card-title">{{hospital.frontMatter.title}}</h5>
