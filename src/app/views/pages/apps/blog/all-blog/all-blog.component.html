@@ -1,4 +1,4 @@
-<div class="h3 my-header">Review Blogs</div>
+<div class="h3 my-header mb-2">Review Blogs</div>
   <owl-carousel-o [options]="customOptions" >
 
     <ng-container *ngFor="let blog of myBlogs">
@@ -109,19 +109,6 @@
 
                       </div>
                     </div><!-- Col -->
-                    <div class="col-md-3 d-flex align-items-center">
-                      <div class="doc d-flex">
-                        <label for="image">
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 3H12H8C6.34315 3 5 4.34315 5 6V18C5 19.6569 6.34315 21 8 21H11M13.5 3L19 8.625M13.5 3V7.625C13.5 8.17728 13.9477 8.625 14.5 8.625H19M19 8.625V11.8125" stroke="#fffffff" stroke-width="2"></path>
-                        <path d="M17 15V18M17 21V18M17 18H14M17 18H20" stroke="#fffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                          </svg>
-                        Profile
-                        </label>
-                        <input type="file" (change)="getImageName($event)" class="d-none" id="image" formControlName="image">
-                      </div>
-                      <!-- <span class=" bg-black text-white p-1 rounded-1 ms-2 shadow-sm" *ngIf="imageName">{{imageName}}</span> -->
-                    </div>
                   </div>
                   </form>
                 <div class="container my-2">
@@ -187,7 +174,7 @@
 </div>
 <div class="row g-3  bg-white shadow-sm pb-5 mt-4">
   <div class="col-12 p-4 hover-title">
-    <h6 class="card-title fw-bold fs-5 my-header">All Blogs</h6>
+    <h6 class="card-title my-header">All Blogs</h6>
 
     </div>
     <div class="col-md-4" *ngFor="let blog of myBlogs" >
@@ -236,5 +223,4 @@
           </div>
         </div>
       </div>
-
-
+      <app-note [data]="parentData" class="my-note position-fixed" *ngIf="this._note.toggelNote"></app-note>

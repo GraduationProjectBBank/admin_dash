@@ -35,9 +35,9 @@ export class HospitalService {
   putImage(model:any,id:string):Observable<any>{
     return  this._HttpClient.post(environment.baseApi.replace('auth','admin')+`hospital/image?id=${id}`,model)
   }
-  updateHospital(id:string,model:any):Observable<any>{
+  updateHospital(id:string,model:any,img:any):Observable<any>{
     const finalModel:Object={
-      frontMatter:model
+      frontMatter:{...model,image2:img}
     }
     return this._HttpClient.put(environment.baseApi.replace('auth','admin')+`hospital/update?id=${id}`,finalModel)
   }

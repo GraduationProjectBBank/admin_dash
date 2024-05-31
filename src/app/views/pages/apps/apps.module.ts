@@ -43,6 +43,10 @@ import { BlogComponent } from './blog/blog.component';
 import { InsightComponent } from './insight/insight.component';
 import { CreateBlogComponent } from './blog/create-blog/create-blog.component';
 import { AllBlogComponent } from './blog/all-blog/all-blog.component';
+import { CreateinsightComponent } from './insight/createinsight/createinsight.component';
+import { AllinsightComponent } from './insight/allinsight/allinsight.component';
+import { NoteComponent } from 'src/app/note/note.component';
+import { AppointmentComponent } from './appointment/appointment.component';
 
 
 const routes: Routes = [
@@ -65,7 +69,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            redirectTo: 'new-blog',
+            redirectTo: 'all-blog',
             pathMatch: 'full'
           },
           {
@@ -79,12 +83,31 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'insight',
+        component: InsightComponent,
+        children: [
+          {
+            path: '',
+            redirectTo: 'all-insight',
+            pathMatch: 'full'
+          },
+          {
+            path: 'new-insight',
+            component: CreateinsightComponent
+          },
+          {
+            path: 'all-insight',
+            component: AllinsightComponent
+          }
+        ]
+      },
+      {
         path: 'emergency',
         component: EmergencyComponent,
         children: [
           {
             path: '',
-            redirectTo: 'new-emergency',
+            redirectTo: 'All-emergency',
             pathMatch: 'full'
           },
           {
@@ -106,6 +129,10 @@ const routes: Routes = [
         component: UsersComponent
       },
       {
+        path: 'appointment',
+        component: AppointmentComponent
+      },
+      {
         path: 'hospital',
         component: HospitalComponent
       }
@@ -114,7 +141,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [UsersComponent, HospitalComponent ,ticketComponent,EmergencyComponent,CreateEmergencyComponent,AllEmergencyComponent, AppsComponent, BloodBagComponent, BlogComponent, InsightComponent, CreateBlogComponent, AllBlogComponent],
+  declarations: [UsersComponent, HospitalComponent ,ticketComponent,EmergencyComponent,CreateEmergencyComponent,AllEmergencyComponent, AppsComponent, BloodBagComponent, BlogComponent, InsightComponent, CreateBlogComponent, AllBlogComponent, CreateinsightComponent, AllinsightComponent,AppointmentComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -128,6 +155,7 @@ const routes: Routes = [
     NgSelectModule,
     ReactiveFormsModule,
     CarouselModule,
+    NoteComponent,
     QuillModule.forRoot(), // ngx-quill
 
   ],

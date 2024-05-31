@@ -39,6 +39,21 @@ export const MENU: MenuItem[] = [
     ]
   },
   {
+    label: 'insight',
+    icon:'layers',
+    link: '/apps/insight',
+    subItems: [
+      {
+        label: 'New insight',
+        link: '/apps/insight/new-insight',
+      },
+      {
+        label: 'All Insights',
+        link: '/apps/insight/all-insight'
+      }
+    ]
+  },
+  {
     label: 'Hospital',
     isTitle: true
   },
@@ -67,6 +82,11 @@ export const MENU: MenuItem[] = [
             link: '/apps/emergency/All-emergency'
           }
         ]
+  },
+  {
+    label: 'Appointment',
+    icon:'calendar',
+    link: '/apps/appointment',
   },
   {
     label: 'Auth',

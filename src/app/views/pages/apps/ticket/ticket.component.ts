@@ -6,6 +6,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import * as $ from 'jquery';
 import { Hospital } from '../hospital/hospital';
 import { HospitalService } from '../hospital/services/hospital.service';
+import { NOTEFICATIONService } from 'src/app/note/service/notification.service';
 
 @Component({
   selector: 'app-ticket',
@@ -14,111 +15,150 @@ import { HospitalService } from '../hospital/services/hospital.service';
 })
 export class ticketComponent implements OnInit {
 
+  parentData: any; // Data for notifications
+  tickets: Ticket[]; // Holds fetched tickets
+  myHospital: Hospital[]; // Holds fetched hospitals
+  ticketWillDelete: any = ''; // Ticket to be deleted
 
-  constructor(private _TicketService:TicketService,
-    private _HospitalService:HospitalService
+  // Form for creating or updating a ticket
+  createTicket: FormGroup = new FormGroup({
+    ownerEmail: new FormControl('', [Validators.email, Validators.required]),
+    hospitalID: new FormControl('', [Validators.required]),
+    donationDate: new FormControl('', [Validators.required]),
+    transferDate: new FormControl('', [Validators.required]),
+    expiryDate: new FormControl('', [Validators.required]),
+  });
+
+  constructor(
+    private _TicketService: TicketService,
+    private _HospitalService: HospitalService,
+    public _note: NOTEFICATIONService
   ) { }
-  tickets:Ticket[]
-  myHospital:Hospital[]
-  ticketWillDelete:any=''
-  createTicket:FormGroup= new FormGroup({
-    ownerEmail: new FormControl('',[Validators.email,Validators.required]),
-    hospitalID: new FormControl('',[Validators.required]),
-    donationDate: new FormControl('',[Validators.required]),
-    transferDate: new FormControl('',[Validators.required]),
-    expiryDate: new FormControl('',[Validators.required]),
-  })
 
   ngOnInit(): void {
-      this.allTickets()
-      this.allHospital()
+    // Fetch initial data
+    this.allTickets();
+    this.allHospital();
   }
 
-  openUpdate(ticket:Ticket){
-    this.createTicket.setValue({ownerEmail:ticket.ownerEmail ,
-       hospitalID:ticket.hospitalID ,
-       donationDate:ticket.donationDate,
-       expiryDate:ticket.expiryDate,
-       transferDate:ticket.transferDate,
-      })
-      $('.updateDialog').slideDown(400)
-  }
-  closeUpdate():void{
-    this.createTicket.reset('')
-    $('.updateDialog').slideUp(400)
-  }
-  openDelete(ticket:Ticket){
-      this.ticketWillDelete=ticket
-      $('.deleteDialog').slideDown(400)
-  }
-  closeDelete():void{
-    $('.deleteDialog').slideUp(400)
-  }
-
-  openAdd():void{
-    $('.addDialog').slideDown(400)
-  }
-  closeAdd():void{
-    $('.addDialog').slideUp(400)
-  }
-  allTickets():void{
+  // Fetch all tickets
+  allTickets(): void {
     this._TicketService.allTickets.subscribe({
-      next:(response)=>{
-        this.tickets=response
+      next: (response) => {
+        this.tickets = response;
       }
-    })
+    });
   }
-  updateTicket():void{
 
-    if(this.createTicket.valid){
-      this._TicketService.updateTicket(this.createTicket.value).subscribe({
-        next:(response)=>{
-          this.closeUpdate()
-          this._TicketService.assignValue()
+  // Update a ticket
+  updateTicket(): void {
+    if (this.createTicket.valid) {
+      this._TicketService.updateTicket(this.createTicket.value, this.ticketWillDelete.id).subscribe({
+        next: (response) => {
+          this.closeUpdate();
+          this.showNotification('Ticket Updated Successfully');
+          this._TicketService.assignValue();
+        },
+        error: (err) => {
+          this.showNotification('Failed Processing');
         }
-      })
-
+      });
     }
-
   }
-  newTicket():void{
-    if(this.createTicket.valid){
+
+  // Create a new ticket
+  newTicket(): void {
+    if (this.createTicket.valid) {
       this._TicketService.createTicket(this.createTicket.value).subscribe({
-        next:(response)=>{
-          this.closeAdd()
-          this._TicketService.assignValue()
+        next: (response) => {
+          this.createTicket.reset('');
+          this.closeAdd();
+          this.showNotification('Ticket Generated Successfully');
+          this._TicketService.assignValue();
+        },
+        error: (err) => {
+          this.parentData = err.error.errors[0];
+          this.showNotification(this.parentData);
         }
-      })
+      });
     }
   }
-  delTicket():void{
 
+  // Delete a ticket
+  delTicket(): void {
     this._TicketService.deleteTicket(this.ticketWillDelete.id).subscribe({
-      next:(response)=>{
-        this.closeDelete()
-        this._TicketService.assignValue()
+      next: (response) => {
+        this.closeDelete();
+        this.showNotification('Ticket Deleted Successfully');
+        this._TicketService.assignValue();
+      },
+      error: (err) => {
+        this.showNotification('Failed Processing');
       }
-
-    })
+    });
   }
-  allHospital():void{
+
+  // Fetch all hospitals
+  allHospital(): void {
     this._HospitalService.allHospital.subscribe({
-      next:(response)=>{
-        this.myHospital=response
+      next: (response) => {
+        this.myHospital = response;
       }
-    })
-  }
-  findHospitalTitle(id:String):any{
-    if(this.myHospital.find(hospital=>hospital.id==id) == undefined)
-      {
-        return id
-      }
-      else{
-      return this.myHospital.find(hospital=>hospital.id==id)?.frontMatter.title
-
-      }
+    });
   }
 
+  // Find hospital title by ID
+  findHospitalTitle(id: string): any {
+    const hospital = this.myHospital.find(hospital => hospital.id === id);
+    return hospital ? hospital.frontMatter.title : id;
+  }
 
+  // Open update dialog for a ticket
+  openUpdate(ticket: Ticket): void {
+    this.createTicket.setValue({
+      ownerEmail: ticket.ownerEmail,
+      hospitalID: ticket.hospitalID,
+      donationDate: ticket.donationDate,
+      expiryDate: ticket.expiryDate,
+      transferDate: ticket.transferDate,
+    });
+    $('.updateDialog').slideDown(400);
+    this.ticketWillDelete = ticket;
+  }
 
+  // Close update dialog
+  closeUpdate(): void {
+    this.createTicket.reset('');
+    $('.updateDialog').slideUp(400);
+  }
+
+  // Open delete dialog for a ticket
+  openDelete(ticket: Ticket): void {
+    this.ticketWillDelete = ticket;
+    $('.deleteDialog').slideDown(400);
+  }
+
+  // Close delete dialog
+  closeDelete(): void {
+    $('.deleteDialog').slideUp(400);
+  }
+
+  // Open add dialog
+  openAdd(): void {
+    $('.addDialog').slideDown(400);
+  }
+
+  // Close add dialog
+  closeAdd(): void {
+    $('.addDialog').slideUp(400);
+  }
+
+  // Show notification
+  showNotification(message: string): void {
+    this.parentData = message;
+    this._note.show();
+    setTimeout(() => {
+      this._note.hide();
+    }, 5000);
+  }
 }

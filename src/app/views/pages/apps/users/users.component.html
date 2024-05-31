@@ -38,7 +38,7 @@
                 <th class="pt-0">location</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody class="text-capitalize">
               <tr *ngFor="let user of myUsers; let i = index" class="cursor-pointer " (click)="openDialog(user)">
                 <td>{{i+1}}</td>
                 <td class="pt-2" *ngIf="user.gender=='male'"><img src="../../../../assets/img/BG/undraw_male_avatar_g98d.svg" class="rounded-circle wd-35" alt="user"></td>
@@ -66,3 +66,4 @@
     </div>
   </div>
 </div>
+<app-note [data]="parentData" class="my-note position-fixed" *ngIf="this._note.toggelNote"></app-note>

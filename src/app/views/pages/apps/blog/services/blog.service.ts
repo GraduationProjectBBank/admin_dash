@@ -41,4 +41,14 @@ export class BlogService {
   deleteBlog(id:string):Observable<any>{
     return this._HttpClient.delete(environment.baseApi.replace('auth','admin') + `blog/delete?id=${id}`)
   }
+  upadteBlog(model:any,id:string,img:any):Observable<any>{
+    let myContent=model.content
+    delete model.content
+    const finalModel ={
+      frontMatter:{...model,images:img},
+      content:myContent,
+      id:id
+    }
+    return this._HttpClient.put(environment.baseApi.replace('auth','admin')+`blog/update`,finalModel)
+  }
 }

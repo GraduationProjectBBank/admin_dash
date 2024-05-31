@@ -11,6 +11,8 @@ import { NgbDropdownModule, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstr
 import { NgApexchartsModule } from "ng-apexcharts";
 
 import { DashboardComponent } from './dashboard.component';
+import { NoteComponent } from 'src/app/note/note.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 const routes: Routes = [
   {
@@ -29,6 +31,8 @@ const routes: Routes = [
     NgbDropdownModule,
     NgbDatepickerModule,
     NgApexchartsModule,
+    NoteComponent,
+    CarouselModule
 
   ]
 })

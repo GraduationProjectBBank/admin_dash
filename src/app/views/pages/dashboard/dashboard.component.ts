@@ -6,6 +6,8 @@ import { AdminService } from 'src/app/services/admin.service';
 import { TicketService } from '../apps/ticket/services/ticket.service';
 import { Ticket } from '../apps/ticket/ticket';
 import * as $ from 'jquery';
+import { NOTEFICATIONService } from 'src/app/note/service/notification.service';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-dashboard',
@@ -45,17 +47,39 @@ export class DashboardComponent implements OnInit {
   /**
    * NgbDatepicker
    */
-
+  // Owl carousel options for hospital display
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: false,
+    touchDrag: true,
+    pullDrag: true,
+    dots: false,
+    autoplay: true,
+    autoplayHoverPause: true,
+    margin: 15,
+    navSpeed: 500,
+    navText: ['', ''],
+    responsive: {
+      0: { items: 1 },
+      400: { items: 1 },
+      740: { items: 2 },
+      940: { items: 4 }
+    },
+    nav: true
+  };
+  myCategory:string[]=['emergency','blog','insight','blood-bag','hospital']
 
   constructor(private calendar: NgbCalendar,
     private _AdminService:AdminService,
-    private _TicketService:TicketService
+    private _TicketService:TicketService,
+    public _note:NOTEFICATIONService
   ) {}
   myUsers:User[]
   myTickets:Ticket[]
   open:boolean = false
   userWillAdmin:any=''
   currentDate: NgbDateStruct;
+  parentData: any;
 
   ngOnInit(): void {
     this.currentDate = this.calendar.getToday();
@@ -81,7 +105,6 @@ export class DashboardComponent implements OnInit {
     this._AdminService.allUsers.subscribe({
       next:(response)=>{
         this.myUsers=this.mappingUser(response)
-
       }
     })
 
@@ -153,13 +176,37 @@ export class DashboardComponent implements OnInit {
     $('#container').slideUp(400)
   }
   newAdmin():void{
-    this._AdminService.newAdmin(this.userWillAdmin.email).subscribe({
-      next:(response)=>{
-        this.closeDialog()
-        this._AdminService.assignUsers()
+    if(this.userWillAdmin.authorities[1]!='Admin'){
+      this._AdminService.newAdmin(this.userWillAdmin.email).subscribe({
+        next:(response)=>{
+          this.closeDialog()
+          this.parentData='The user has Successfully become an Administrator'
+          this._note.show()
+          this._AdminService.assignUsers()
+          setTimeout(() => {
+            this._note.toggelNote=false
+          }, 5000);
+        },
+        error:(err)=>{
+          this.closeDialog()
+          this.parentData='Failed Processing Make Sure You Are Connected to the Internet'
+          this._note.show()
+          setTimeout(() => {
+            this._note.toggelNote=false
+          }, 5000);
+        }
+      })
+    }
+    else
+    {
 
-      }
-    })
+      this.closeDialog()
+      this.parentData='This User Is Already Administrator'
+      this._note.show()
+      setTimeout(() => {
+        this._note.toggelNote=false
+      }, 5000);
+    }
   }
 
 
@@ -171,25 +218,22 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  getMonthName(dateString:any) {
+    // Split the date string into year, month, and day
+    const [year, month, day] = dateString.split('-');
+    // Create a Date object
+    const date = new Date(year, month - 1, day); // Month is zero-based
 
+    // Get the month name
+    const monthName = date.toLocaleString('default', { month: 'long' });
+
+    return monthName + ','+ day;
+  }
 
 
 }
 
 
-  /**
-   * Only for RTL (feel free to remove if you are using LTR)
-//    */
-//   addRtlOptions() {
-//     // Revenue chart
-//     this.revenueChartOptions.yaxis.labels.offsetX = -25;
-//     this.revenueChartOptions.yaxis.title.offsetX = -75;
-
-//     //  Monthly sales chart
-//     this.monthlySalesChartOptions.yaxis.labels.offsetX = -10;
-//     this.monthlySalesChartOptions.yaxis.title.offsetX = -70;
-//   }
-// }
 
 
 /**

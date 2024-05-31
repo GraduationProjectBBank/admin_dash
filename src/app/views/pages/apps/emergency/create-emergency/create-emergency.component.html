@@ -4,7 +4,7 @@
     <div class="card hover-title">
       <div class="card-body">
         <h6 class="card-title my-header">New Emergency</h6>
-          <form [formGroup]="emergForm" (submit)="handelForm()">
+          <form [formGroup]="emergForm" (submit)="handleForm()">
             <div class="row">
               <div class="col-md-6">
                 <div class="mb-3">
@@ -73,8 +73,9 @@
             </div><!-- Row -->
 
           </form>
-          <button type="submit" (click)="handelForm()" class="btn btn-dark submit">New SoS</button>
+          <button type="submit" (click)="handleForm()" class="btn btn-dark submit">New SoS</button>
       </div>
     </div>
   </div>
 </div>
+<app-note [data]="parentData" class="my-note position-fixed" *ngIf="this._note.toggelNote"></app-note>

@@ -19,7 +19,7 @@
           <div class="form-elment">
             <div class="flex-column">
               <label>hospital ID </label></div>
-              <select  formControlName="hospitalId" class="w-50 p-2 border-1 rounded-2 cursor-pointer">
+              <select  formControlName="hospitalID" class="w-50 p-2 border-1 rounded-2 cursor-pointer">
                 <option [value]="hospital.id" *ngFor="let hospital of myHospital" >{{hospital.frontMatter.title}}</option>
               </select>
           </div>
@@ -188,3 +188,4 @@
     </div>
   </div>
 </div>
+<app-note [data]="parentData" class="my-note position-fixed" *ngIf="this._note.toggelNote"></app-note>
