@@ -7,6 +7,7 @@ import { AuthComponent } from './auth.component';
 import { VarifyComponent } from './varify/varify.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NoteComponent } from 'src/app/note/note.component';
 
 
 const routes: Routes = [
@@ -41,6 +42,7 @@ const routes: Routes = [
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NoteComponent,
     // ToastrModule,
     RouterModule.forChild(routes)
   ]

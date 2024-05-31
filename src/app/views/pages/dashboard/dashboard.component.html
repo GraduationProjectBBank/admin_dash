@@ -1,25 +1,23 @@
 <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
   <div>
-    <h4 class="mb-3 mb-md-0">Welcome</h4>
-  </div>
-  <div class="d-flex align-items-center flex-wrap text-nowrap">
-    <div class="input-group wd-200 me-2 mb-2 mb-md-0">
-      <button class="btn btn-outline-primary btn-icon calendar" type="button" (click)="d.toggle()">
-        <i data-feather="calendar" appFeatherIcon></i>
-      </button>
-      <input class="form-control border-primary bg-transparent" placeholder="yyyy-mm-dd"
-          name="dp" [(ngModel)]="currentDate" ngbDatepicker #d="ngbDatepicker">
-    </div>
-    <button type="button" class="btn btn-outline-primary btn-icon-text me-2 mb-2 mb-md-0">
-      <i class="btn-icon-prepend" data-feather="printer" appFeatherIcon></i>
-      Print
-    </button>
-    <button type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0">
-      <i class="btn-icon-prepend" data-feather="download-cloud" appFeatherIcon></i>
-      Download Report
-    </button>
+    <h4 class="mb-3 mb-md-0">Welcome To Admin Panal</h4>
   </div>
 </div>
+
+<owl-carousel-o [options]="customOptions">
+
+  <ng-container *ngFor="let category of myCategory">
+    <ng-template carouselSlide>
+      <div class="position-relative cursor-pointer" [routerLink]="'/apps/'+category">
+        <img [src]="'assets/img/BG/' + category + '.jpg'" height="200" class="rounded-2 shadow-sm" >
+        <div class="date-span disapeer rounded-2 text-center position-absolute w-100 bg-primary text-white top-0 bg-opacity-75 cursor-pointer start-0 p-2">
+          <span class=" text-truncate fw-bold ">{{category}}</span>
+        </div>
+      </div>
+    </ng-template>
+  </ng-container>
+
+</owl-carousel-o>
 <div id="container" class="all-dialog">
     <div class="dialog-design">
       <div class="header d-flex justify-content-between align-items-center">
@@ -175,11 +173,11 @@
 </div> <!-- row -->
 
 <div class="row mb-4">
-  <div class="col-lg-5 col-xl-4 grid-margin grid-margin-xl-0 stretch-card">
+  <div class="col-lg-5 col-xl-4 grid-margin grid-margin-xl-0 stretch-card ">
     <div class="card">
       <div class="card-body">
         <div class="d-flex justify-content-between align-items-baseline mb-2">
-          <h6 class="card-title mb-0">Last 5 Tickets</h6>
+          <h6 class="card-title mb-0">Last 8 Tickets</h6>
           <div ngbDropdown class="mb-2">
             <button ngbDropdownToggle class="btn p-0 no-dropdown-toggle-icon" type="button" id="dropdownMenuButton6">
               <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal" appFeatherIcon></i>
@@ -194,7 +192,7 @@
           </div>
         </div>
         <div class="d-flex flex-column">
-          <a href="" (click)="false" class="d-flex align-items-center border-bottom pb-3 pt-1" *ngFor="let ticket of myTickets.slice(0,5);let i = index">
+          <a href="" (click)="false" class="d-flex align-items-center border-bottom pb-3 pt-1" *ngFor="let ticket of myTickets.slice(0,8);let i = index">
             <div class="me-3">
               <img *ngIf="i%2==0" src="../../../../assets/img/BG/undraw_male_avatar_g98d.svg" class="rounded-circle wd-35" alt="user">
               <img *ngIf="i%2!=0" src="../../../../assets/img/BG/undraw_female_avatar_efig.svg" class="rounded-circle wd-35" alt="user">
@@ -202,59 +200,11 @@
             <div class="w-100">
               <div class="d-flex justify-content-between">
                 <h6 class="text-body mb-2">{{ticket.ownerEmail}}</h6>
-                <p class="text-muted tx-12">{{ticket.hospitalID}}</p>
+                <p class="text-muted tx-12">{{getMonthName(ticket.donationDate.split('T')[0])}}</p>
               </div>
-              <p class="text-muted tx-13">(Donate Day : {{ticket.donationDate.split('T')[0]}} )</p>
+              <p class="text-muted tx-13">(Expiry Day : {{ticket.expiryDate.split('T')[0]}} )</p>
             </div>
           </a>
-          <!-- <a href="" (click)="false" class="d-flex align-items-center border-bottom py-3">
-            <div class="me-3">
-              <img src="https://via.placeholder.com/35x35" class="rounded-circle wd-35" alt="user">
-            </div>
-            <div class="w-100">
-              <div class="d-flex justify-content-between">
-                <h6 class="text-body mb-2">Carl Henson</h6>
-                <p class="text-muted tx-12">02.14 AM</p>
-              </div>
-              <p class="text-muted tx-13">I've finished it! See you so..</p>
-            </div>
-          </a>
-          <a href="" (click)="false" class="d-flex align-items-center border-bottom py-3">
-            <div class="me-3">
-              <img src="https://via.placeholder.com/35x35" class="rounded-circle wd-35" alt="user">
-            </div>
-            <div class="w-100">
-              <div class="d-flex justify-content-between">
-                <h6 class="text-body mb-2">Jensen Combs</h6>
-                <p class="text-muted tx-12">08.22 PM</p>
-              </div>
-              <p class="text-muted tx-13">This template is awesome!</p>
-            </div>
-          </a>
-          <a href="" (click)="false" class="d-flex align-items-center border-bottom py-3">
-            <div class="me-3">
-              <img src="https://via.placeholder.com/35x35" class="rounded-circle wd-35" alt="user">
-            </div>
-            <div class="w-100">
-              <div class="d-flex justify-content-between">
-                <h6 class="text-body mb-2">Amiah Burton</h6>
-                <p class="text-muted tx-12">05.49 AM</p>
-              </div>
-              <p class="text-muted tx-13">Nice to meet you</p>
-            </div>
-          </a>
-          <a href="" (click)="false" class="d-flex align-items-center border-bottom py-3">
-            <div class="me-3">
-              <img src="https://via.placeholder.com/35x35" class="rounded-circle wd-35" alt="user">
-            </div>
-            <div class="w-100">
-              <div class="d-flex justify-content-between">
-                <h6 class="text-body mb-2">Yaretzi Mayo</h6>
-                <p class="text-muted tx-12">01.19 AM</p>
-              </div>
-              <p class="text-muted tx-13">Hey! there I'm available...</p>
-            </div>
-          </a> -->
         </div>
       </div>
     </div>
@@ -264,18 +214,6 @@
       <div class="card-body">
         <div class="d-flex justify-content-between align-items-baseline mb-2">
           <h6 class="card-title mb-0">users</h6>
-          <!-- <div ngbDropdown class="mb-2">
-            <button ngbDropdownToggle class="btn p-0 no-dropdown-toggle-icon" type="button" id="dropdownMenuButton7">
-              <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal" appFeatherIcon></i>
-            </button>
-            <div ngbDropdownMenu aria-labelledby="dropdownMenuButton7">
-              <a ngbDropdownItem class="d-flex align-items-center" href="" (click)="false"><i data-feather="eye" appFeatherIcon class="icon-sm me-2"></i> <span class="">View</span></a>
-              <a ngbDropdownItem class="d-flex align-items-center" href="" (click)="false"><i data-feather="edit-2" appFeatherIcon class="icon-sm me-2"></i> <span class="">Edit</span></a>
-              <a ngbDropdownItem class="d-flex align-items-center" href="" (click)="false"><i data-feather="trash" appFeatherIcon class="icon-sm me-2"></i> <span class="">Delete</span></a>
-              <a ngbDropdownItem class="d-flex align-items-center" href="" (click)="false"><i data-feather="printer" appFeatherIcon class="icon-sm me-2"></i> <span class="">Print</span></a>
-              <a ngbDropdownItem class="d-flex align-items-center" href="" (click)="false"><i data-feather="download" appFeatherIcon class="icon-sm me-2"></i> <span class="">Download</span></a>
-            </div>
-          </div> -->
         </div>
         <div class="table-responsive">
           <table class="table table-hover mb-0">
@@ -291,7 +229,7 @@
               </tr>
             </thead>
             <tbody class="text-capitalize">
-              <tr *ngFor="let user of myUsers ; let i = index " class="cursor-pointer" (click)="openDialog(user)">
+              <tr *ngFor="let user of myUsers; let i = index " class="cursor-pointer" (click)="openDialog(user)">
                 <td>{{i+1}}</td>
                 <td class="pt-2" *ngIf="user.gender=='male'"><img src="../../../../assets/img/BG/undraw_male_avatar_g98d.svg" class="rounded-circle wd-35" alt="user"></td>
                 <td class="pt-2" *ngIf="user.gender!='male'"><img src="../../../../assets/img/BG/undraw_female_avatar_efig.svg" class="rounded-circle wd-35" alt="user"></td>
@@ -301,67 +239,12 @@
                 <td>{{user.bloodType}}</td>
                 <td>{{user.country + ','+ user.city}}</td>
               </tr>
-              <!-- <tr>
-                <td>1</td>
-                <td>NobleUI jQuery</td>
-                <td>01/01/2022</td>
-                <td>26/04/2022</td>
-                <td><span class="badge bg-danger">Released</span></td>
-                <td>Leonardo Payne</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>NobleUI Angular</td>
-                <td>01/01/2022</td>
-                <td>26/04/2022</td>
-                <td><span class="badge bg-success">Review</span></td>
-                <td>Carl Henson</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>NobleUI ReactJs</td>
-                <td>01/05/2022</td>
-                <td>10/09/2022</td>
-                <td><span class="badge bg-info">Pending</span></td>
-                <td>Jensen Combs</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>NobleUI VueJs</td>
-                <td>01/01/2022</td>
-                <td>31/11/2022</td>
-                <td><span class="badge bg-warning">Work in Progress</span>
-                </td>
-                <td>Amiah Burton</td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>NobleUI Laravel</td>
-                <td>01/01/2022</td>
-                <td>31/12/2022</td>
-                <td><span class="badge bg-danger text-white">Coming soon</span></td>
-                <td>Yaretzi Mayo</td>
-              </tr>
-              <tr>
-                <td>6</td>
-                <td>NobleUI NodeJs</td>
-                <td>01/01/2022</td>
-                <td>31/12/2022</td>
-                <td><span class="badge bg-primary">Coming soon</span></td>
-                <td>Carl Henson</td>
-              </tr>
-              <tr>
-                <td class="border-bottom">3</td>
-                <td class="border-bottom">NobleUI EmberJs</td>
-                <td class="border-bottom">01/05/2022</td>
-                <td class="border-bottom">10/11/2022</td>
-                <td class="border-bottom"><span class="badge bg-info">Pending</span></td>
-                <td class="border-bottom">Jensen Combs</td>
-              </tr> -->
-            </tbody>
+              </tbody>
           </table>
         </div>
       </div>
     </div>
   </div>
 </div> <!-- row -->
+<app-note [data]="parentData" class="my-note position-fixed" *ngIf="this._note.toggelNote"></app-note>
+

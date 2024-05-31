@@ -29,8 +29,12 @@ export class TicketService {
   createTicket(model:any):Observable<any>{
     return this._HttpClient.post(environment.baseApi.replace('auth','admin')+'tickets/create',model)
   }
-  updateTicket(model:any):Observable<any>{
-    return this._HttpClient.post(environment.baseApi.replace('auth','admin')+'tickets/update',model)
+  updateTicket(model:any,ticketId:string):Observable<any>{
+    const finalModel={
+      ...model,
+      id:ticketId
+    }
+    return this._HttpClient.put(environment.baseApi.replace('auth','admin')+'tickets/update',finalModel)
   }
   deleteTicket(id:string):Observable<any>{
     return this._HttpClient.delete(environment.baseApi.replace('auth','admin') + `tickets/delete?id=${id}`)

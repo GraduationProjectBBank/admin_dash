@@ -11,19 +11,26 @@ export class EmergencyService {
   constructor(private _HttpClient:HttpClient) { }
 
   createEmergency(model:any):Observable<any>{
+    const myContent:string=model.content
+    delete model.content
     let emerg:object = {
-      frontMatter:model
+      frontMatter:model,
+      content:myContent
     }
     return this._HttpClient.post(environment.baseApi.replace('auth','admin')+`emergency/create`,emerg)
   }
   getEmergency():Observable<any>{
     return this._HttpClient.get(environment.baseApi.replace('auth/','')+`emergency/getAll`)
   }
-  updateEmergency(model:any):Observable<any>{
+  deleteEmergency(id:string):Observable<any>{
+    return this._HttpClient.delete(environment.baseApi.replace('auth','admin')+`emergency/delete?id=${id}`)
+  }
+  updateEmergency(model:any,emerId:string):Observable<any>{
     let emerg:object = {
-      id:model.id,
-      frontMatter:model
+      id:emerId,
+      frontMatter:model,
+      content:''
     }
-    return this._HttpClient.post(environment.baseApi.replace('auth','admin')+`emergency/update`,emerg)
+    return this._HttpClient.put(environment.baseApi.replace('auth','admin')+`emergency/update`,emerg)
   }
 }

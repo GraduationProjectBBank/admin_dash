@@ -7,7 +7,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
-
   constructor(private _HttpClient:HttpClient) { }
 
   register(model:any):Observable<any>{
@@ -23,6 +22,15 @@ export class AuthService {
         refresh_token:localStorage.getItem('refToken')
     }
     return this._HttpClient.post(environment.baseApi + 'refreshToken' ,model )
+  }
+  updateUser(model:any):Observable<any>{
+    const myModel={
+      firstname:model.firstName,
+      lastname:model.lastName,
+      ...model
+    }
+    return this._HttpClient.post(environment.baseApi.replace('auth','user')+`update`,myModel)
+
   }
 
 }
