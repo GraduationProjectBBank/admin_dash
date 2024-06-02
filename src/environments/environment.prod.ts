@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseApi:'http://localhost:8081/auth/',
+  baseApi:'https://midcare-v1-0-5.onrender.com/auth/',
 };
