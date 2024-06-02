@@ -16,7 +16,6 @@ changeInsight():void{
 
 }
 myInsights: Insight[] = [];
-insightActions: Insight;
 parentData: string;
 
 customOptions: OwlOptions = {
@@ -39,33 +38,34 @@ customOptions: OwlOptions = {
   nav: true
 };
 
-insightForm: FormGroup;
+
+// Initialize form group
+  insightForm = new FormGroup({
+  title: new FormControl('', [Validators.required]),
+  date: new FormControl('', [Validators.required]),
+  summary: new FormControl('', [Validators.required]),
+  content: new FormControl('', [Validators.required]),
+  category: new FormControl('', [Validators.required]),
+  images: new FormControl('', [Validators.required])
+});
+
+// Initialize insightActions
+  insightActions = {
+  content: '',
+  frontMatter: {
+    title: '',
+    date: '',
+    images: '',
+    summary: '',
+    category: ''
+  }
+} as Insight;
 
 constructor(
   private _InsightService: InsightService,
   public _note: NOTEFICATIONService
 ) {
-  // Initialize form group
-  this.insightForm = new FormGroup({
-    title: new FormControl('', [Validators.required]),
-    date: new FormControl('', [Validators.required]),
-    summary: new FormControl('', [Validators.required]),
-    content: new FormControl('', [Validators.required]),
-    category: new FormControl('', [Validators.required]),
-    images: new FormControl('', [Validators.required])
-  });
 
-  // Initialize insightActions
-  this.insightActions = {
-    content: '',
-    frontMatter: {
-      title: '',
-      date: '',
-      images: '',
-      summary: '',
-      category: ''
-    }
-  } as Insight;
 }
 
 ngOnInit(): void {

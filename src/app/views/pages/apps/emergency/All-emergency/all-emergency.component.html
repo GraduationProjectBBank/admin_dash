@@ -147,85 +147,9 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div id="container" class="updateDialog all-dialog">
-        <div class="dialog-design">
-          <div class="header d-flex justify-content-between align-items-center">
-           <span class="h3 fw-bold" >Update Emergency</span> <span class="fs-3 cursor-pointer" (click)="closeUpdate()"><i class="fa-solid fa-xmark"></i></span>
+  </div>
+</div>
 
-           </div>
-           <div class="row">
-            <div class="col-md-12 stretch-card">
-              <div class="card border-0">
-                <div class="card-body">
-                    <form [formGroup]="emergForm" (submit)="updateEmergency()">
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <div class="mb-3">
-                            <label class="form-label">Title</label>
-                            <input type="text" class="form-control border-1 border-primary" placeholder="Enter Title of Emergency" formControlName="title">
-                          </div>
-                        </div><!-- Col -->
-                        <div class="col-sm-4">
-                          <label for="category">Choose Type</label>
-                         <select id="category" class=" form-control mb-3 mt-2 border-1 border-primary"  formControlName="category">
-                          <option value="A-">A-</option>
-                          <option value="A+">A+</option>
-                          <option value="B-">B-</option>
-                          <option value="B+">B+</option>
-                          <option value="O-">O-</option>
-                          <option value="O+">O+</option>
-                         </select>
-                        </div>
-                      </div><!-- Row -->
-                      <div class="row">
-                        <!-- <div class="col-sm-4">
-                          <div class="mb-3">
-                            <label class="form-label">City</label>
-                            <input type="text" class="form-control border-1 border-primary" placeholder="Enter city">
-                          </div>
-                        </div>Col -->
-                        <div class="col-sm-4">
-                          <div class="mb-3">
-                            <label class="form-label">Location</label>
-                            <input type="text" class="form-control border-1 border-primary" placeholder="Enter location of emergency" formControlName="location">
-                          </div>
-                        </div><!-- Col -->
-                        <div class="col-sm-4">
-                          <label for="">Choose Level</label>
-                         <select id="level" class=" form-control mb-3 mt-2 border-1 border-primary"  formControlName="level">
-                          <option value="Low">Low</option>
-                          <option value="Mid">Mid</option>
-                          <option value="High">High</option>
-                         </select>
-                        </div>
-                        <div class="col-sm-4 position-relative mb-4 mb-sm-0">
-                          <div class="mb-3">
-                            <label class="form-label mb-5 mb-sm-0">Date</label>
-                            <input type="date" class="form-control border-1 border-primary" formControlName="date">
-                          </div>
-                        </div><!-- Col -->
-
-                      </div><!-- Row -->
-                      <div class="row">
-
-                        <div class="col-sm-8">
-                          <label for="">Summary</label>
-                          <textarea id="" cols="50" rows="10" class="w-100 border-1 border-primary" formControlName="summary"></textarea>
-                        </div>
-                      </div><!-- Row -->
-                    </form>
-                    <div class="action d-flex justify-content-between mt-2">
-                      <button type="submit" (click)="updateEmergency()"> update</button>
-                      <button class="cancel" (click)="closeUpdate()"> cancel</button>
-                     </div>          </div>
-              </div>
-            </div>
-          </div>
-           </div>
-
-        </div>
 
       <div id="container" class="deleteDialog all-dialog">
         <div class="dialog">
@@ -243,4 +167,128 @@
            </div>
         </div>
       </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div id="container" class="updateDialog all-dialog">
+        <div class="dialog-design">
+          <div class="header d-flex justify-content-between align-items-center">
+           <span class="h3 fw-bold" >Update Emergency</span> <span class="fs-3 cursor-pointer" (click)="closeUpdate()"><i class="fa-solid fa-xmark"></i></span>
+
+           </div>
+            <div class="content">
+              <div class="body">
+                <form [formGroup]="emergForm">
+                  <div class="form-elment">
+                    <div class="flex-column">
+                      <label>title </label></div>
+                      <div class="inputForm">
+                        <i class="fa-regular fa-envelope me-1"></i>
+                        <input type="text" class="form-control " placeholder="Enter Title of Emergency" formControlName="title">
+                      </div>
+                  </div>
+                  <div class="form-elment">
+                    <div class="flex-column">
+                      <label>location </label></div>
+                      <div class="inputForm">
+                        <i class="fa-solid fa-location-dot me-1"></i>                        <!-- <label class="form-label">Location</label> -->
+                        <input type="text" class="form-control " placeholder="Enter location of emergency" formControlName="location">
+                      </div>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="form-elment">
+                      <div class="flex-column">
+                        <label for="">Choose Level</label>
+                        <select id="level" class=" form-control"  formControlName="level">
+                         <option value="Low">Low</option>
+                         <option value="Mid">Mid</option>
+                         <option value="High">High</option>
+                        </select>
+                      </div>
+                  </div>
+                  <div class="form-elment">
+                    <div class="flex-column">
+                      <label for="category">Choose Type</label>
+                         <select id="category" class=" form-control mb-3 mt-2 "  formControlName="category">
+                          <option value="A-">A-</option>
+                          <option value="A+">A+</option>
+                          <option value="B-">B-</option>
+                          <option value="B+">B+</option>
+                          <option value="O-">O-</option>
+                          <option value="O+">O+</option>
+                         </select>
+                    </div>
+                </div>
+                  </div>
+                  <div class="form-elment">
+                    <div class="flex-column">
+                      <label> Date </label></div>
+                      <div class="input-date position-relative">
+                        <i class="fa-regular fa-calendar-days"></i>
+                        <input placeholder="Enter Date" class="inpu" type="date" formControlName="date">
+                      </div>
+                </div>
+
+
+                  <div class="form-elment ms-1">
+                    <div class="flex-column">
+                      <label>Summary</label></div>
+                      <div class="mt-1">
+                        <textarea id="" cols="50" rows="10" class="" formControlName="summary"></textarea>
+                      </div>
+                  </div>
+
+
+                </form>
+               </div>
+               <div class="action d-flex justify-content-between">
+                <button type="submit" (click)="updateEmergency()"> update</button>
+                <button class="cancel" (click)="closeUpdate()"> cancel</button>
+               </div>
+            </div>
+           </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <app-note [data]="parentData" class="my-note position-fixed" *ngIf="this._note.toggelNote"></app-note>

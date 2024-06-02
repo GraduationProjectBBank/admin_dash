@@ -1,5 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-
+@font-face {
+  font-family: 'poppins';
+  src: url('./assets/fonts/Poppins/Poppins-Black.ttf'),
+       url('./assets/fonts/Poppins/Poppins-Bold.ttf') ;
+  /* Add more src entries if your font has different formats */
+  /* You can specify font-weight and font-style here if needed */
+}
 
 // Global icon font
 @import "./assets/fonts/feather/style.css";
@@ -233,13 +239,27 @@ body{
 
 }
 
+#container{
+  color: white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 999999999;
+  display: none;
+  max-width: 70%;
+  width: 70%;
+  min-width:max-content;
 
+  // margin: auto auto;
+}
 .all-dialog{
   .dialog-design{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 800px;
+    width: 100%;
+    margin: auto auto;
     height: fit-content;
     color: #000000b7;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
@@ -611,10 +631,20 @@ body{
 
 
 }
+textarea{
+  min-height: 6rem;
+  max-height: 6rem;
+  height: 6rem;
+}
+
 @media screen and (max-width:700px) {
+  #container{
+    max-width: 90%;
+    min-width: 90%;
+  }
   .dialog-design{
-    max-width: 55%;
-    margin: 0 auto;
+    overflow-y: scroll;
+    margin: auto auto;
 }
 }
 

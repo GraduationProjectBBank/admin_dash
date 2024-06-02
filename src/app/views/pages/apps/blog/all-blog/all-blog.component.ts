@@ -66,6 +66,7 @@ export class AllBlogComponent implements OnInit {
     category: new FormControl('', [Validators.required]), // Category form control
     images: new FormControl('', [Validators.required]) // Images form control
   });
+  imageName: any;
 
   constructor(
     private _BlogService: BlogService, // Service for managing blogs
@@ -159,7 +160,11 @@ export class AllBlogComponent implements OnInit {
   }
 
 
-  getImageName(event:any):void{}
+  // Function to get the name of the selected image file
+  getImageName(event: any): void {
+    this.imageName = event.target.files[0].name;
+  }
+
 
   // Function to display notification
   showNotification(message: string): void {

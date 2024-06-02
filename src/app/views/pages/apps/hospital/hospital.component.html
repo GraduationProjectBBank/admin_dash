@@ -2,7 +2,7 @@
 <div id="container" class="updateDialog all-dialog">
   <div class="dialog-design">
     <div class="header d-flex justify-content-between align-items-center">
-     <span class="h3 fw-bold" >Update Ticket</span> <span class="fs-3 cursor-pointer" (click)="closeUpdate()"><i class="fa-solid fa-xmark"></i></span>
+     <span class="h3 fw-bold" >Update Hospital</span> <span class="fs-3 cursor-pointer" (click)="closeUpdate()"><i class="fa-solid fa-xmark"></i></span>
 
      </div>
       <div class="content">
@@ -17,7 +17,6 @@
                 </div>
 
             </div>
-            <div class="input-container justify-content-between align-items-center">
               <div class="form-elment">
                 <div class="flex-column">
                   <label> Date </label></div>
@@ -25,21 +24,20 @@
                     <i class="fa-regular fa-calendar-days"></i>
                     <input placeholder="Enter Date" class="inpu" type="date" formControlName="date">
                   </div>
-              </div>
-              <div class="form-elment">
-                <div class="flex-column">
-                  <div class="doc d-flex">
-                    <label for="images">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 3H12H8C6.34315 3 5 4.34315 5 6V18C5 19.6569 6.34315 21 8 21H11M13.5 3L19 8.625M13.5 3V7.625C13.5 8.17728 13.9477 8.625 14.5 8.625H19M19 8.625V11.8125" stroke="#fffffff" stroke-width="2"></path>
-                    <path d="M17 15V18M17 21V18M17 18H14M17 18H20" stroke="#fffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                      </svg>
-                    ADD image
-                    </label>
-                    <input type="file" (change)="getFile($event)" class="d-none" id="images" formControlName="image2">
-                  </div>
-              </div>
-              </div>
+            </div>
+            <div class="form-elment my-4">
+              <div class="flex-column">
+                <div class="doc d-flex">
+                  <label for="images">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 3H12H8C6.34315 3 5 4.34315 5 6V18C5 19.6569 6.34315 21 8 21H11M13.5 3L19 8.625M13.5 3V7.625C13.5 8.17728 13.9477 8.625 14.5 8.625H19M19 8.625V11.8125" stroke="#fffffff" stroke-width="2"></path>
+                  <path d="M17 15V18M17 21V18M17 18H14M17 18H20" stroke="#fffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  ADD image
+                  </label>
+                  <input type="file" (change)="getFile($event)" class="d-none" id="images" formControlName="image2">
+                </div>
+            </div>
             </div>
             <div class="form-elment">
               <div class="flex-column">
@@ -92,7 +90,7 @@
 <div id="container" class="addDialog all-dialog" >
   <div class="dialog-design">
     <div class="header d-flex justify-content-between align-items-center">
-     <span class="h3 fw-bold" >Create Ticket</span> <span class="fs-3 cursor-pointer" (click)="toggleAdd()"><i class="fa-solid fa-xmark"></i></span>
+     <span class="h3 fw-bold" >Create Hospital</span> <span class="fs-3 cursor-pointer" (click)="toggleAdd()"><i class="fa-solid fa-xmark"></i></span>
 
      </div>
     <div class="content">
