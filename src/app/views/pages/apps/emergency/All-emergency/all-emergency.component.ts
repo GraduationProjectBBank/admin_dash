@@ -42,7 +42,8 @@ export class AllEmergencyComponent implements OnInit {
     date: new FormControl('', [Validators.required]),
     summary: new FormControl('', [Validators.required]),
     category: new FormControl('', [Validators.required]),
-    location: new FormControl('', [Validators.required])
+    location: new FormControl('', [Validators.required]),
+    site: new FormControl('', [Validators.required])
   });
   emergencyActions:Emergency={
     frontMatter:{
@@ -93,7 +94,8 @@ export class AllEmergencyComponent implements OnInit {
       date: emergency.frontMatter.date,
       summary: emergency.frontMatter.summary,
       category: emergency.frontMatter.category,
-      location: emergency.frontMatter.location
+      location: emergency.frontMatter.location,
+      site: emergency.frontMatter.site
     });
   }
 

@@ -131,7 +131,7 @@
                             </span>
                           </div>
                         </div>
-                        <span class="ps-2">{{emer.frontMatter.location}}</span>
+                        <span class="ps-2">{{emer.frontMatter.location}},{{emer.frontMatter.site}}</span>
                     </div>
 
                   </div>
@@ -220,6 +220,35 @@
                         <i class="fa-solid fa-location-dot me-1"></i>                        <!-- <label class="form-label">Location</label> -->
                         <input type="text" class="form-control " placeholder="Enter location of emergency" formControlName="location">
                       </div>
+                  </div>
+                  <div class="form-elment">
+                    <div class="flex-column">
+                      <label for="category">Choose Governorate</label>
+                   <select id="category" class=" form-control mb-3 mt-2 border-1 border-primary cursor-pointer"  formControlName="site">
+                    <option value="New Valley">New Valley</option>
+                    <option value="Matruh">Matruh</option>
+                    <option value="Red Sea">Red Sea</option>
+                    <option value="Giza">Giza</option>
+                    <option value="South Sinai">South Sinai</option>
+                    <option value="North Sinai">North Sinai</option>
+                    <option value="Suez">Suez</option>
+                    <option value="Beheira">Beheira</option>
+                    <option value="Helwan">Helwan</option>
+                    <option value="Sharqia">Sharqia</option>
+                    <option value="Alexandria">Alexandria</option>
+                    <option value="Minya">Minya</option>
+                    <option value="Gharbia">Gharbia</option>
+                    <option value="Faiyum">Faiyum</option>
+                    <option value="Qena">Qena</option>
+                    <option value="Asyut">Asyut</option>
+                    <option value="Ismailia">Ismailia</option>
+                    <option value="Beni Suef">Beni Suef</option>
+                    <option value="Qalyubia">Qalyubia</option>
+                    <option value="Damietta">Damietta</option>
+                    <option value="Port Said">Port Said</option>
+                    <option value="6th of October">6th of October</option>
+                   </select>
+                  </div>
                   </div>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="form-elment">

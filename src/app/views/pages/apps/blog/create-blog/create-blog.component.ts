@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BlogService } from '../services/blog.service';
 import { NOTEFICATIONService } from 'src/app/note/service/notification.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-create-blog',
@@ -93,7 +94,8 @@ export class CreateBlogComponent implements OnInit {
 
   constructor(
     private _blogService: BlogService, // Injecting BlogService
-    public _note: NOTEFICATIONService // Injecting NOTEFICATIONService
+    public _note: NOTEFICATIONService, // Injecting NOTEFICATIONService
+    private _DatePipe:DatePipe
   ) {
     // Initialize the form group and its controls
     this.blogForm = new FormGroup({
@@ -118,6 +120,7 @@ export class CreateBlogComponent implements OnInit {
   handleForm(): void {
     // Extract nested form group for author
     const nestedForm = this.blogForm.get('author') as FormGroup;
+    this.blogForm.get('date')?.setValue(this._DatePipe.transform(this.blogForm.get('date')?.value, 'yyyy-MM-dd\'T\'HH:mm:ssXXX') || ''); // Format date or return empty string if invalid
 
     // Check if the form and nested form are valid
     if (this.blogForm.valid && nestedForm.valid) {

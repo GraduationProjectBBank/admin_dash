@@ -7,6 +7,7 @@ import * as $ from 'jquery';
 import { Hospital } from '../hospital/hospital';
 import { HospitalService } from '../hospital/services/hospital.service';
 import { NOTEFICATIONService } from 'src/app/note/service/notification.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-ticket',
@@ -19,7 +20,7 @@ export class ticketComponent implements OnInit {
   tickets: Ticket[]; // Holds fetched tickets
   myHospital: Hospital[]; // Holds fetched hospitals
   ticketWillDelete: any = ''; // Ticket to be deleted
-
+  myObject: { [key: string]: any } = {};
   // Form for creating or updating a ticket
   createTicket: FormGroup = new FormGroup({
     ownerEmail: new FormControl('', [Validators.email, Validators.required]),
@@ -32,7 +33,8 @@ export class ticketComponent implements OnInit {
   constructor(
     private _TicketService: TicketService,
     private _HospitalService: HospitalService,
-    public _note: NOTEFICATIONService
+    public _note: NOTEFICATIONService,
+    private _DatePipe:DatePipe
   ) { }
 
   ngOnInit(): void {
@@ -52,6 +54,14 @@ export class ticketComponent implements OnInit {
 
   // Update a ticket
   updateTicket(): void {
+    Object.entries(this.createTicket.controls).forEach(([key,value]:any)=>{
+
+      if(key.includes('Date')){
+
+        this.createTicket.get(key)?.setValue(this.formatDate(value.value))
+
+      }
+    })
     if (this.createTicket.valid) {
       this._TicketService.updateTicket(this.createTicket.value, this.ticketWillDelete.id).subscribe({
         next: (response) => {
@@ -68,6 +78,16 @@ export class ticketComponent implements OnInit {
 
   // Create a new ticket
   newTicket(): void {
+
+    Object.entries(this.createTicket.controls).forEach(([key,value]:any)=>{
+
+      if(key.includes('Date')){
+
+        this.createTicket.get(key)?.setValue(this.formatDate(value.value))
+
+      }
+    })
+
     if (this.createTicket.valid) {
       this._TicketService.createTicket(this.createTicket.value).subscribe({
         next: (response) => {
@@ -161,4 +181,11 @@ export class ticketComponent implements OnInit {
       this._note.hide();
     }, 5000);
   }
+
+  formatDate(date: string): string {
+    // Assuming date is in the format "yyyy-mm-dd"
+    return this._DatePipe.transform(date, 'yyyy-MM-dd\'T\'HH:mm:ssXXX') || ''; // Format date or return empty string if invalid
+  }
+
+
 }

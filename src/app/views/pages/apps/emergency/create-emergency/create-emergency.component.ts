@@ -22,6 +22,7 @@ export class CreateEmergencyComponent {
     summary: new FormControl('', [Validators.required]),
     category: new FormControl('', [Validators.required]),
     location: new FormControl('', [Validators.required]),
+    site: new FormControl('', [Validators.required]),
     content: new FormControl('', [Validators.required])
   }); // Form group for emergency form
 
@@ -35,6 +36,7 @@ export class CreateEmergencyComponent {
           // Show success message
           this.parentData = 'Emergency Added Successfully';
           this._note.show();
+          this.imageName=''
 
           // Hide success message after 5 seconds
           setTimeout(() => {
@@ -48,6 +50,7 @@ export class CreateEmergencyComponent {
             date: '',
             summary: '',
             category: '',
+            site: '',
             location: ''
           });
         },

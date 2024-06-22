@@ -6,16 +6,45 @@
         <h6 class="card-title my-header">New Emergency</h6>
           <form [formGroup]="emergForm" (submit)="handleForm()">
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-sm-6">
                 <div class="mb-3">
                   <label class="form-label">Title</label>
                   <input type="text" class="form-control border-1 border-primary" placeholder="Enter Title of Emergency" formControlName="title">
                 </div>
               </div><!-- Col -->
-              <div class="col-sm-6">
+              <div class="col-sm-3">
                 <div class="mb-3">
                   <label class="form-label">Location</label>
                   <input type="text" class="form-control border-1 border-primary" placeholder="Enter location of emergency" formControlName="location">
+                </div>
+              </div><!-- Col -->
+              <div class="col-sm-3">
+                <div class="mb-3">
+                  <label for="category">Choose Governorate</label>
+                   <select id="category" class=" form-control mb-3 mt-2 border-1 border-primary cursor-pointer"  formControlName="site">
+                    <option value="New Valley">New Valley</option>
+                    <option value="Matruh">Matruh</option>
+                    <option value="Red Sea">Red Sea</option>
+                    <option value="Giza">Giza</option>
+                    <option value="South Sinai">South Sinai</option>
+                    <option value="North Sinai">North Sinai</option>
+                    <option value="Suez">Suez</option>
+                    <option value="Beheira">Beheira</option>
+                    <option value="Helwan">Helwan</option>
+                    <option value="Sharqia">Sharqia</option>
+                    <option value="Alexandria">Alexandria</option>
+                    <option value="Minya">Minya</option>
+                    <option value="Gharbia">Gharbia</option>
+                    <option value="Faiyum">Faiyum</option>
+                    <option value="Qena">Qena</option>
+                    <option value="Asyut">Asyut</option>
+                    <option value="Ismailia">Ismailia</option>
+                    <option value="Beni Suef">Beni Suef</option>
+                    <option value="Qalyubia">Qalyubia</option>
+                    <option value="Damietta">Damietta</option>
+                    <option value="Port Said">Port Said</option>
+                    <option value="6th of October">6th of October</option>
+                   </select>
                 </div>
               </div><!-- Col -->
 
@@ -37,13 +66,13 @@
               <div class="col-md-3 position-relative">
                 <div class="mb-3">
                   <label class="form-label my-0 my-md-1">Date</label>
-                  <input type="date" class="form-control border-2 border-primary" formControlName="date">
+                  <input type="date" class="form-control border-2 border-primary cursor-pointer" formControlName="date">
                 </div>
               </div><!-- Col -->
               <div class="col-md-3">
                 <div class="mb-3">
                   <label for="category">Choose Type</label>
-                   <select id="category" class=" form-control mb-3 mt-2 border-1 border-primary"  formControlName="category">
+                   <select id="category" class=" form-control mb-3 mt-2 border-1 border-primary cursor-pointer"  formControlName="category">
                     <option value="A-">A-</option>
                     <option value="A+">A+</option>
                     <option value="B-">B-</option>
@@ -55,7 +84,7 @@
               </div><!-- Col -->
               <div class="col-md-3">
                 <label for="">Choose Level</label>
-               <select id="level" class=" form-control mb-3 mt-2 border-1 border-primary"  formControlName="level">
+               <select id="level" class=" form-control mb-3 mt-2 border-1 border-primary cursor-pointer"  formControlName="level">
                 <option value="Low">Low</option>
                 <option value="Mid">Mid</option>
                 <option value="High">High</option>

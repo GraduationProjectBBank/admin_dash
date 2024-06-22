@@ -264,6 +264,16 @@ body{
     color: #000000b7;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
   }
+  .dialog-design.del-dialog{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: fit-content;
+    margin: auto auto;
+    height: fit-content;
+    color: #000000b7;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  }
   .header{
     background: #a9a9a9;
     border-top-left-radius: 10px;

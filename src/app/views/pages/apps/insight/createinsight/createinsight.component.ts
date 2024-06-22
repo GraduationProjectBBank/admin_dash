@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { InsightService } from '../services/insight.service';
 import { NOTEFICATIONService } from 'src/app/note/service/notification.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-createinsight',
@@ -24,16 +25,17 @@ export class CreateinsightComponent {
 
   constructor(
     private _InsightService: InsightService,
-    public _note: NOTEFICATIONService
+    public _note: NOTEFICATIONService,
+    private _DatePipe:DatePipe
   ) {}
-
-
 
   // Handle form submission
   handleForm(): void {
     // Create a FormData object and append the selected image file
     const formData = new FormData();
     formData.append('image', this.file);
+    this.insightForm.get('date')?.setValue(this._DatePipe.transform(this.insightForm.get('date')?.value, 'yyyy-MM-dd\'T\'HH:mm:ssXXX') || ''); // Format date or return empty string if invalid
+
 
     // Check if the form is valid
     if (this.insightForm.valid) {
@@ -44,6 +46,8 @@ export class CreateinsightComponent {
           this.addImage(formData, response.id);
           // Reset the form after successful submission
           this.insightForm.reset('');
+          
+          this.imageName=''
         }
       });
     }
